@@ -1,0 +1,2033 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Abo Safwan Currency | Saudi Riyal Exchange Service</title>
+
+<meta name="description"
+content="Abo Safwan Currency - Saudi Riyal Exchange Service. سعودی ریال ایکسچینج، کسٹمر آرڈر، ریٹ اور Tracking Number کی سہولت۔">
+
+<meta name="keywords"
+content="Abo Safwan Currency, Saudi Riyal Exchange, SAR PKR, Saudi Riyal Pakistan, Currency Exchange">
+
+<meta name="robots" content="index, follow">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:#f4f7f9;
+  color:#17202a;
+  line-height:1.7;
+}
+
+/* HEADER */
+
+header{
+  background:linear-gradient(135deg,#075e54,#087f6e);
+  color:white;
+  text-align:center;
+  padding:35px 15px;
+}
+
+header h1{
+  margin:0;
+  font-size:32px;
+}
+
+header p{
+  margin:8px 0 0;
+  font-size:16px;
+}
+
+/* NAVIGATION */
+
+nav{
+  background:#064c44;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+
+.nav-inner{
+  max-width:900px;
+  margin:auto;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  padding:12px 14px;
+  font-size:14px;
+}
+
+nav a:hover{
+  background:#087f6e;
+}
+
+/* CONTAINER */
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:15px;
+}
+
+/* PUBLIC CARDS */
+
+.card{
+  background:white;
+  border-radius:13px;
+  padding:20px;
+  margin-bottom:18px;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.public-card{
+  text-align:right;
+}
+
+h2{
+  color:#075e54;
+  margin-top:0;
+}
+
+h3{
+  color:#075e54;
+}
+
+/* HERO */
+
+.hero{
+  text-align:center;
+  padding:35px 20px;
+}
+
+.hero h2{
+  font-size:28px;
+}
+
+.hero p{
+  color:#555;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:20px;
+}
+
+/* BUTTONS */
+
+button{
+  border:0;
+  border-radius:8px;
+  padding:11px 16px;
+  font-family:inherit;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:8px;
+}
+
+.btn-main{
+  background:#075e54;
+  color:white;
+  width:100%;
+}
+
+.btn-green{
+  background:#16803c;
+  color:white;
+}
+
+.btn-blue{
+  background:#1976d2;
+  color:white;
+}
+
+.btn-gray{
+  background:#666;
+  color:white;
+}
+
+.btn-outline{
+  background:white;
+  color:#075e54;
+  border:1px solid #075e54;
+  text-decoration:none;
+  display:inline-block;
+  padding:11px 18px;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+.btn-white{
+  background:white;
+  color:#075e54;
+  text-decoration:none;
+  display:inline-block;
+  padding:11px 18px;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+/* RATE */
+
+.rate-box{
+  background:#e8f7f3;
+  border:1px solid #b7e2d8;
+  border-radius:10px;
+  padding:18px;
+  text-align:center;
+  margin-bottom:15px;
+}
+
+.rate-box strong{
+  display:block;
+  font-size:28px;
+  color:#075e54;
+  margin-top:5px;
+}
+
+/* SERVICE GRID */
+
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.service-item{
+  background:#f7faf9;
+  border:1px solid #e1e7e5;
+  border-radius:10px;
+  padding:18px;
+  text-align:center;
+}
+
+.service-item h3{
+  margin-top:0;
+}
+
+/* LIST */
+
+.info-list{
+  padding-right:20px;
+}
+
+.info-list li{
+  margin-bottom:8px;
+}
+
+/* LOGIN */
+
+#loginSection{
+  margin-top:20px;
+}
+
+label{
+  display:block;
+  margin:8px 0 5px;
+  font-weight:bold;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-family:inherit;
+  font-size:15px;
+}
+
+.pin-note{
+  font-size:13px;
+  color:#666;
+  margin-top:5px;
+}
+
+/* DASHBOARD */
+
+.total-box{
+  background:#f4f8fa;
+  border-radius:10px;
+  padding:14px;
+  margin-top:12px;
+}
+
+.total-row{
+  display:flex;
+  justify-content:space-between;
+  padding:5px 0;
+}
+
+.total-value{
+  font-size:22px;
+  font-weight:bold;
+  color:#075e54;
+}
+
+.message{
+  display:none;
+  padding:11px;
+  border-radius:8px;
+  margin-top:12px;
+}
+
+.success{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.error{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.result{
+  margin-top:15px;
+  padding:15px;
+  border-radius:10px;
+  background:#f7faf9;
+  border:1px solid #ddd;
+}
+
+.tracking{
+  direction:ltr;
+  text-align:center;
+  font-size:19px;
+  font-weight:bold;
+  color:#075e54;
+  letter-spacing:1px;
+}
+
+.status-pending{
+  color:#d97706;
+  font-weight:bold;
+}
+
+.status-approved{
+  color:#16803c;
+  font-weight:bold;
+}
+
+.hidden{
+  display:none !important;
+}
+
+.logout{
+  width:100%;
+  background:#d32f2f;
+  color:white;
+}
+
+/* CONTACT */
+
+.contact-box{
+  background:#075e54;
+  color:white;
+  text-align:center;
+  border-radius:13px;
+  padding:25px;
+}
+
+.contact-box h2{
+  color:white;
+}
+
+.contact-number{
+  direction:ltr;
+  font-size:22px;
+  font-weight:bold;
+  margin:10px 0;
+}
+
+/* FOOTER */
+
+footer{
+  background:#17202a;
+  color:white;
+  text-align:center;
+  padding:25px 15px;
+  margin-top:30px;
+}
+
+footer a{
+  color:white;
+  text-decoration:none;
+  margin:0 5px;
+}
+
+/* MOBILE */
+
+@media(max-width:650px){
+
+  header h1{
+    font-size:25px;
+  }
+
+  .container{
+    padding:10px;
+  }
+
+  .card{
+    padding:15px;
+  }
+
+  .service-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero h2{
+    font-size:23px;
+  }
+
+  nav a{
+    padding:9px 8px;
+    font-size:12px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header id="home">
+
+  <h1>Abo Safwan Currency</h1>
+
+  <p>Saudi Riyal Exchange Service</p>
+
+</header>
+
+
+<!-- NAVIGATION -->
+
+<nav>
+
+  <div class="nav-inner">
+
+    <a href="#home">ہوم</a>
+
+    <a href="#services">ہماری خدمات</a>
+
+    <a href="#about">ہمارے بارے میں</a>
+
+    <a href="#exchange">سعودی ریال</a>
+
+    <a href="#contact">رابطہ</a>
+
+    <a href="#login">کسٹمر لاگ اِن</a>
+
+  </div>
+
+</nav>
+
+
+<div class="container">
+
+
+<!-- HERO -->
+
+<section class="card hero">
+
+  <h2>
+    سعودی ریال ایکسچینج سروس
+  </h2>
+
+  <p>
+    Abo Safwan Currency میں سعودی ریال کے حساب اور کسٹمر آرڈر
+    کے لیے آسان اور منظم آن لائن سہولت۔
+  </p>
+
+  <div class="hero-buttons">
+
+    <a
+      href="#login"
+      class="btn-white"
+      style="background:#075e54;color:white;"
+    >
+      کسٹمر لاگ اِن
+    </a>
+
+    <a
+      href="#services"
+      class="btn-outline"
+    >
+      ہماری خدمات
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- EXCHANGE -->
+
+<section
+  id="exchange"
+  class="card public-card"
+>
+
+  <h2>
+    سعودی ریال ایکسچینج
+  </h2>
+
+  <p>
+    ہمارے سسٹم میں موجودہ سعودی ریال ریٹ کے مطابق
+    کسٹمر اپنا آرڈر درج کر سکتا ہے۔
+  </p>
+
+  <div class="rate-box">
+
+    موجودہ سعودی ریال ریٹ
+
+    <strong id="publicRate">
+      لوڈ ہو رہا ہے...
+    </strong>
+
+    <div>
+      1 SAR = پاکستانی روپے
+    </div>
+
+  </div>
+
+  <p>
+    نوٹ: ریٹ انتظامیہ کی طرف سے تبدیل کیا جا سکتا ہے۔
+    آرڈر کے وقت جو ریٹ موجود ہوگا وہ اسی آرڈر کے حساب میں محفوظ کیا جاتا ہے۔
+  </p>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section
+  id="services"
+  class="card public-card"
+>
+
+  <h2>
+    ہماری خدمات
+  </h2>
+
+  <div class="service-grid">
+
+    <div class="service-item">
+
+      <h3>💱 ریال ایکسچینج</h3>
+
+      <p>
+        سعودی ریال اور پاکستانی روپے کے حساب کی سہولت۔
+      </p>
+
+    </div>
+
+
+    <div class="service-item">
+
+      <h3>📋 آن لائن آرڈر</h3>
+
+      <p>
+        کسٹمر اپنے اکاؤنٹ سے آسانی سے آرڈر درج کر سکتا ہے۔
+      </p>
+
+    </div>
+
+
+    <div class="service-item">
+
+      <h3>🔎 Tracking</h3>
+
+      <p>
+        Tracking Number کے ذریعے اپنے آرڈر کا اسٹیٹس دیکھیں۔
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section
+  id="about"
+  class="card public-card"
+>
+
+  <h2>
+    Abo Safwan Currency کے بارے میں
+  </h2>
+
+  <p>
+    Abo Safwan Currency ایک سعودی ریال ایکسچینج سروس کے لیے
+    تیار کیا گیا آن لائن حساب اور کسٹمر آرڈر پلیٹ فارم ہے۔
+  </p>
+
+  <p>
+    ہمارا مقصد کسٹمر کے آرڈر، ریٹ، رقم اور Tracking Number
+    کو آسان اور منظم انداز میں محفوظ رکھنا ہے۔
+  </p>
+
+  <p>
+    کسٹمر اپنے اکاؤنٹ کے ذریعے اپنا آرڈر درج کر سکتا ہے
+    اور Tracking Number کے ذریعے اس کی صورتحال معلوم کر سکتا ہے۔
+  </p>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+
+<section class="card public-card">
+
+  <h2>
+    طریقہ کار
+  </h2>
+
+  <ol class="info-list">
+
+    <li>
+      کسٹمر نیا اکاؤنٹ بناتا ہے۔
+    </li>
+
+    <li>
+      موبائل نمبر اور 4 ہندسوں کے PIN سے Login کرتا ہے۔
+    </li>
+
+    <li>
+      وصول کنندہ کا نام اور سعودی ریال کی رقم درج کرتا ہے۔
+    </li>
+
+    <li>
+      موجودہ ریٹ کے مطابق کل پاکستانی رقم ظاہر ہوتی ہے۔
+    </li>
+
+    <li>
+      آرڈر جمع ہونے کے بعد Tracking Number ملتا ہے۔
+    </li>
+
+    <li>
+      Tracking Number سے آرڈر کا Status چیک کیا جا سکتا ہے۔
+    </li>
+
+  </ol>
+
+</section>
+
+
+<!-- LOGIN -->
+
+<section
+  id="login"
+>
+
+<div id="loginSection">
+
+
+  <!-- LOGIN CARD -->
+
+  <div class="card">
+
+    <h2>
+      کسٹمر لاگ اِن
+    </h2>
+
+    <label>
+      موبائل نمبر
+    </label>
+
+    <input
+      id="loginMobile"
+      type="tel"
+      placeholder="موبائل نمبر"
+      autocomplete="tel"
+    >
+
+    <label>
+      4 ہندسوں کا PIN
+    </label>
+
+    <input
+      id="loginPin"
+      type="password"
+      inputmode="numeric"
+      maxlength="4"
+      placeholder="4 ہندسوں کا PIN"
+    >
+
+    <button
+      class="btn-main"
+      onclick="customerLogin()"
+    >
+      لاگ اِن
+    </button>
+
+    <div
+      id="loginMessage"
+      class="message"
+    ></div>
+
+  </div>
+
+
+  <!-- REGISTER -->
+
+  <div class="card">
+
+    <h2>
+      نیا اکاؤنٹ بنائیں
+    </h2>
+
+    <label>
+      نام
+    </label>
+
+    <input
+      id="registerName"
+      type="text"
+      placeholder="اپنا نام"
+    >
+
+    <label>
+      موبائل نمبر
+    </label>
+
+    <input
+      id="registerMobile"
+      type="tel"
+      placeholder="موبائل نمبر"
+    >
+
+    <label>
+      4 ہندسوں کا PIN
+    </label>
+
+    <input
+      id="registerPin"
+      type="password"
+      inputmode="numeric"
+      maxlength="4"
+      placeholder="4 ہندسوں کا PIN"
+    >
+
+    <div class="pin-note">
+      PIN صرف 4 ہندسوں پر مشتمل ہونا چاہیے۔
+    </div>
+
+    <button
+      class="btn-green"
+      onclick="registerCustomer()"
+    >
+      اکاؤنٹ بنائیں
+    </button>
+
+    <div
+      id="registerMessage"
+      class="message"
+    ></div>
+
+  </div>
+
+</div>
+
+
+<!-- DASHBOARD -->
+
+<div
+  id="dashboardSection"
+  class="hidden"
+>
+
+
+  <!-- CUSTOMER INFO -->
+
+  <div class="card">
+
+    <h2>
+      خوش آمدید
+    </h2>
+
+    <div id="customerInfo"></div>
+
+    <button
+      class="logout"
+      onclick="customerLogout()"
+    >
+      لاگ آؤٹ
+    </button>
+
+  </div>
+
+
+  <!-- RATE -->
+
+  <div class="card">
+
+    <div class="rate-box">
+
+      موجودہ سعودی ریال ریٹ
+
+      <strong id="currentRate">
+        0
+      </strong>
+
+      <div>
+        1 SAR = پاکستانی روپے
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- NEW ORDER -->
+
+  <div class="card">
+
+    <h2>
+      نیا آرڈر
+    </h2>
+
+    <label>
+      وصول کنندہ کا نام
+    </label>
+
+    <input
+      id="receiver"
+      type="text"
+      placeholder="وصول کنندہ کا نام"
+    >
+
+    <label>
+      سعودی ریال کی رقم
+    </label>
+
+    <input
+      id="amount"
+      type="number"
+      min="1"
+      step="0.01"
+      placeholder="مثلاً 50"
+      oninput="calculateTotal()"
+    >
+
+    <div class="total-box">
+
+      <div class="total-row">
+
+        <span>
+          ریٹ
+        </span>
+
+        <strong id="orderRate">
+          0
+        </strong>
+
+      </div>
+
+      <div class="total-row">
+
+        <span>
+          کل پاکستانی روپے
+        </span>
+
+        <strong
+          id="orderTotal"
+          class="total-value"
+        >
+          0
+        </strong>
+
+      </div>
+
+    </div>
+
+    <button
+      class="btn-main"
+      onclick="createOrder()"
+    >
+      آرڈر کریں
+    </button>
+
+    <div
+      id="orderMessage"
+      class="message"
+    ></div>
+
+    <div
+      id="newOrderResult"
+      class="result hidden"
+    ></div>
+
+  </div>
+
+
+  <!-- TRACKING -->
+
+  <div class="card">
+
+    <h2>
+      Tracking Number تلاش کریں
+    </h2>
+
+    <input
+      id="trackingNumber"
+      type="text"
+      placeholder="مثلاً AS-20261006-XXXXXXXX"
+      dir="ltr"
+    >
+
+    <button
+      class="btn-blue"
+      onclick="searchTracking()"
+    >
+      Tracking تلاش کریں
+    </button>
+
+    <div
+      id="trackingMessage"
+      class="message"
+    ></div>
+
+    <div
+      id="trackingResult"
+      class="result hidden"
+    ></div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section
+  id="contact"
+  class="contact-box"
+>
+
+  <h2>
+    رابطہ کریں
+  </h2>
+
+  <p>
+    Abo Safwan Currency
+  </p>
+
+  <div class="contact-number">
+    03480968023
+  </div>
+
+  <p>
+    سعودی ریال ایکسچینج سروس
+  </p>
+
+</section>
+
+
+<!-- PRIVACY -->
+
+<section class="card public-card">
+
+  <h2>
+    Privacy Policy — رازداری کی پالیسی
+  </h2>
+
+  <p>
+    ہم کسٹمر کی فراہم کردہ معلومات کو سروس اور آرڈر کے
+    انتظام کے لیے استعمال کرتے ہیں۔
+  </p>
+
+  <p>
+    کسٹمر کا PIN محفوظ طریقے سے hash کی صورت میں محفوظ کیا جاتا ہے۔
+    اصل PIN کو واپس دیکھا نہیں جا سکتا۔
+  </p>
+
+  <p>
+    کسٹمر کے آرڈر اور Tracking معلومات کو غیر متعلقہ افراد
+    کے لیے ظاہر نہیں کیا جاتا۔
+  </p>
+
+  <p>
+    ویب سائٹ کے استعمال کے لیے ضروری تکنیکی معلومات
+    Supabase سروس کے ذریعے محفوظ کی جا سکتی ہیں۔
+  </p>
+
+</section>
+
+
+<!-- TERMS -->
+
+<section class="card public-card">
+
+  <h2>
+    Terms & Conditions — شرائط و ضوابط
+  </h2>
+
+  <ul class="info-list">
+
+    <li>
+      کسٹمر کو اپنا درست نام اور موبائل نمبر فراہم کرنا چاہیے۔
+    </li>
+
+    <li>
+      PIN صرف کسٹمر کو معلوم ہونا چاہیے۔
+    </li>
+
+    <li>
+      آرڈر کے وقت موجودہ ریٹ کے مطابق حساب کیا جائے گا۔
+    </li>
+
+    <li>
+      آرڈر کا Tracking Number محفوظ رکھنا کسٹمر کی ذمہ داری ہے۔
+    </li>
+
+    <li>
+      آرڈر کا Status انتظامیہ کی کارروائی کے مطابق تبدیل ہوگا۔
+    </li>
+
+    <li>
+      ویب سائٹ کی سہولت کے غلط استعمال کی اجازت نہیں ہے۔
+    </li>
+
+  </ul>
+
+</section>
+
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div>
+    © 2026 Abo Safwan Currency
+  </div>
+
+  <div style="margin-top:8px;">
+
+    <a href="#home">
+      Home
+    </a>
+
+    |
+
+    <a href="#services">
+      Services
+    </a>
+
+    |
+
+    <a href="#about">
+      About
+    </a>
+
+    |
+
+    <a href="#contact">
+      Contact
+    </a>
+
+  </div>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   SUPABASE
+========================= */
+
+const SUPABASE_URL =
+"https://fcrgyjxdmcbqxqizuoto.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_Uunl1_GNG6s1hnWiEyjFmw_nQELLr89";
+
+const supabaseClient =
+supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+
+/* =========================
+   SESSION
+========================= */
+
+const SESSION_KEY =
+"aboSafwanCustomerSession";
+
+let customerSession = null;
+let currentRate = 0;
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+function showMessage(
+  id,
+  text,
+  type="success"
+){
+
+  const el =
+    document.getElementById(id);
+
+  if(!el) return;
+
+  el.textContent = text;
+
+  el.className =
+    "message " + type;
+
+  el.style.display =
+    "block";
+
+}
+
+
+/* =========================
+   REGISTER
+========================= */
+
+async function registerCustomer(){
+
+  const name =
+    document
+      .getElementById("registerName")
+      .value
+      .trim();
+
+  const mobile =
+    document
+      .getElementById("registerMobile")
+      .value
+      .trim();
+
+  const pin =
+    document
+      .getElementById("registerPin")
+      .value
+      .trim();
+
+
+  if(!name){
+
+    showMessage(
+      "registerMessage",
+      "نام درج کریں۔",
+      "error"
+    );
+
+    return;
+  }
+
+
+  if(!mobile){
+
+    showMessage(
+      "registerMessage",
+      "موبائل نمبر درج کریں۔",
+      "error"
+    );
+
+    return;
+  }
+
+
+  if(!/^\d{4}$/.test(pin)){
+
+    showMessage(
+      "registerMessage",
+      "PIN صرف 4 ہندسوں کا ہونا چاہیے۔",
+      "error"
+    );
+
+    return;
+  }
+
+
+  const {data,error} =
+    await supabaseClient
+      .rpc(
+        "create_customer_account",
+        {
+          p_name:name,
+          p_mobile:mobile,
+          p_pin:pin
+        }
+      );
+
+
+  if(error){
+
+    showMessage(
+      "registerMessage",
+      error.message,
+      "error"
+    );
+
+    return;
+  }
+
+
+  if(!data?.success){
+
+    showMessage(
+      "registerMessage",
+      data?.message ||
+      "اکاؤنٹ نہیں بنا۔",
+      "error"
+    );
+
+    return;
+  }
+
+
+  showMessage(
+    "registerMessage",
+    "اکاؤنٹ کامیابی سے بن گیا۔ اب Login کریں۔",
+    "success"
+  );
+
+
+  document.getElementById(
+    "loginMobile"
+  ).value = mobile;
+
+
+  document.getElementById(
+    "loginPin"
+  ).value = pin;
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+async function customerLogin(){
+
+  const mobile =
+    document
+      .getElementById("loginMobile")
+      .value
+      .trim();
+
+  const pin =
+    document
+      .getElementById("loginPin")
+      .value
+      .trim();
+
+
+  if(!mobile || !pin){
+
+    showMessage(
+      "loginMessage",
+      "موبائل نمبر اور PIN درج کریں۔",
+      "error"
+    );
+
+    return;
+  }
+
+
+  const {data,error} =
+    await supabaseClient
+      .rpc(
+        "customer_login",
+        {
+          p_mobile:mobile,
+          p_pin:pin
+        }
+      );
+
+
+  if(error){
+
+    showMessage(
+      "loginMessage",
+      error.message,
+      "error"
+    );
+
+    return;
+  }
+
+
+  if(!data?.success){
+
+    showMessage(
+      "loginMessage",
+      data?.message ||
+      "Login ناکام ہوگیا۔",
+      "error"
+    );
+
+    return;
+  }
+
+
+  customerSession = {
+
+    name:data.name,
+
+    mobile:data.mobile,
+
+    session_token:
+      data.session_token
+
+  };
+
+
+  localStorage.setItem(
+    SESSION_KEY,
+    JSON.stringify(customerSession)
+  );
+
+
+  await showDashboard();
+
+}
+
+
+/* =========================
+   SHOW DASHBOARD
+========================= */
+
+async function showDashboard(){
+
+  if(!customerSession?.session_token){
+
+    showLogin();
+
+    return;
+  }
+
+
+  document.getElementById(
+    "loginSection"
+  ).classList.add("hidden");
+
+
+  document.getElementById(
+    "dashboardSection"
+  ).classList.remove("hidden");
+
+
+  document.getElementById(
+    "customerInfo"
+  ).innerHTML = `
+
+    <strong>
+      نام:
+    </strong>
+
+    ${escapeHtml(customerSession.name)}
+
+    <br>
+
+    <strong>
+      موبائل:
+    </strong>
+
+    <span dir="ltr">
+      ${escapeHtml(customerSession.mobile)}
+    </span>
+
+  `;
+
+
+  await loadCurrentRate();
+
+}
+
+
+/* =========================
+   CURRENT RATE
+========================= */
+
+async function loadCurrentRate(){
+
+  const {data,error} =
+    await supabaseClient
+      .rpc(
+        "get_customer_current_rate"
+      );
+
+
+  if(error){
+
+    console.error(error);
+
+    return;
+  }
+
+
+  currentRate =
+    Number(data || 0);
+
+
+  document.getElementById(
+    "currentRate"
+  ).textContent =
+    formatNumber(currentRate);
+
+
+  document.getElementById(
+    "orderRate"
+  ).textContent =
+    formatNumber(currentRate);
+
+
+  document.getElementById(
+    "publicRate"
+  ).textContent =
+    formatNumber(currentRate);
+
+
+  calculateTotal();
+
+}
+
+
+/* =========================
+   CALCULATE TOTAL
+========================= */
+
+function calculateTotal(){
+
+  const amount =
+    Number(
+      document
+        .getElementById("amount")
+        ?.value
+    ) || 0;
+
+
+  const total =
+    amount * currentRate;
+
+
+  const totalElement =
+    document.getElementById("orderTotal");
+
+
+  if(totalElement){
+
+    totalElement.textContent =
+      formatNumber(total);
+
+  }
+
+}
+
+
+/* =========================
+   CREATE ORDER
+========================= */
+
+async function createOrder(){
+
+  if(!customerSession?.session_token){
+
+    showLogin();
+
+    return;
+  }
+
+
+  const receiver =
+    document
+      .getElementById("receiver")
+      .value
+      .trim();
+
+
+  const amount =
+    Number(
+      document
+        .getElementById("amount")
+        .value
+    ) || 0;
+
+
+  if(!receiver){
+
+    showMessage(
+      "orderMessage",
+      "وصول کنندہ کا نام درج کریں۔",
+      "error"
+    );
+
+    return;
+  }
+
+
+  if(amount<=0){
+
+    showMessage(
+      "orderMessage",
+      "سعودی ریال کی درست رقم درج کریں۔",
+      "error"
+    );
+
+    return;
+  }
+
+
+  const {data,error} =
+    await supabaseClient
+      .rpc(
+        "create_secure_customer_currency_order",
+        {
+          p_session_token:
+            customerSession.session_token,
+
+          p_receiver:
+            receiver,
+
+          p_amount:
+            amount
+        }
+      );
+
+
+  if(error){
+
+    showMessage(
+      "orderMessage",
+      error.message,
+      "error"
+    );
+
+    return;
+  }
+
+
+  if(!data){
+
+    showMessage(
+      "orderMessage",
+      "آرڈر نہیں بنا۔",
+      "error"
+    );
+
+    return;
+  }
+
+
+  const total =
+    Number(data.total || 0);
+
+
+  const result =
+    document.getElementById(
+      "newOrderResult"
+    );
+
+
+  result.classList.remove(
+    "hidden"
+  );
+
+
+  result.innerHTML = `
+
+    <h3>
+      آرڈر کامیابی سے درج ہوگیا
+    </h3>
+
+    <p>
+      <strong>وصول کنندہ:</strong>
+      ${escapeHtml(data.receiver || receiver)}
+    </p>
+
+    <p>
+      <strong>سعودی ریال:</strong>
+      ${formatNumber(data.amount)}
+    </p>
+
+    <p>
+      <strong>ریٹ:</strong>
+      ${formatNumber(data.rate)}
+    </p>
+
+    <p>
+      <strong>کل رقم:</strong>
+      ${formatNumber(total)} روپے
+    </p>
+
+    <p>
+      <strong>اسٹیٹس:</strong>
+
+      <span class="status-pending">
+        ⏳ زیرِ کارروائی
+      </span>
+
+    </p>
+
+    <p>
+      <strong>Tracking Number:</strong>
+    </p>
+
+    <div class="tracking">
+      ${escapeHtml(
+        data.tracking_number ||
+        "تیار ہو رہا ہے"
+      )}
+    </div>
+
+  `;
+
+
+  showMessage(
+    "orderMessage",
+    "آرڈر کامیابی سے درج ہوگیا۔",
+    "success"
+  );
+
+
+  document.getElementById(
+    "receiver"
+  ).value = "";
+
+
+  document.getElementById(
+    "amount"
+  ).value = "";
+
+
+  calculateTotal();
+
+}
+
+
+/* =========================
+   TRACKING
+========================= */
+
+async function searchTracking(){
+
+  if(!customerSession?.session_token){
+
+    showLogin();
+
+    return;
+  }
+
+
+  const tracking =
+    document
+      .getElementById("trackingNumber")
+      .value
+      .trim();
+
+
+  if(!tracking){
+
+    showMessage(
+      "trackingMessage",
+      "Tracking Number درج کریں۔",
+      "error"
+    );
+
+    return;
+  }
+
+
+  const {data,error} =
+    await supabaseClient
+      .rpc(
+        "search_secure_customer_tracking",
+        {
+          p_session_token:
+            customerSession.session_token,
+
+          p_tracking_number:
+            tracking
+        }
+      );
+
+
+  if(error){
+
+    showMessage(
+      "trackingMessage",
+      error.message,
+      "error"
+    );
+
+    return;
+  }
+
+
+  const result =
+    document.getElementById(
+      "trackingResult"
+    );
+
+
+  if(!data || data.length===0){
+
+    result.classList.remove(
+      "hidden"
+    );
+
+    result.innerHTML = `
+      <strong>
+        کوئی ریکارڈ نہیں ملا۔
+      </strong>
+    `;
+
+    return;
+  }
+
+
+  const r =
+    data[0];
+
+
+  const total =
+    Number(r.total || 0);
+
+
+  const received =
+    Number(
+      r.total_received ||
+      r.received ||
+      0
+    );
+
+
+  const due =
+    Math.max(
+      total-received,
+      0
+    );
+
+
+  let statusText =
+    "⏳ زیرِ کارروائی";
+
+
+  let statusClass =
+    "status-pending";
+
+
+  if(r.status === "approved"){
+
+    statusText =
+      "✅ منظور شدہ";
+
+    statusClass =
+      "status-approved";
+
+  }
+
+
+  result.classList.remove(
+    "hidden"
+  );
+
+
+  result.innerHTML = `
+
+    <h3>
+      آرڈر کی تفصیل
+    </h3>
+
+    <p>
+      <strong>کسٹمر:</strong>
+      ${escapeHtml(r.customer || "")}
+    </p>
+
+    <p>
+      <strong>وصول کنندہ:</strong>
+      ${escapeHtml(r.receiver || "")}
+    </p>
+
+    <p>
+      <strong>سعودی ریال:</strong>
+      ${formatNumber(r.amount)}
+    </p>
+
+    <p>
+      <strong>ریٹ:</strong>
+      ${formatNumber(r.rate)}
+    </p>
+
+    <p>
+      <strong>کل رقم:</strong>
+      ${formatNumber(total)} روپے
+    </p>
+
+    <p>
+      <strong>وصول:</strong>
+      ${formatNumber(received)} روپے
+    </p>
+
+    <p>
+      <strong>بقایا:</strong>
+      ${formatNumber(due)} روپے
+    </p>
+
+    <p>
+      <strong>Tracking Number:</strong>
+    </p>
+
+    <div class="tracking">
+      ${escapeHtml(
+        r.tracking_number || ""
+      )}
+    </div>
+
+    <p>
+      <strong>اسٹیٹس:</strong>
+
+      <span class="${statusClass}">
+        ${statusText}
+      </span>
+    </p>
+
+  `;
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+async function customerLogout(){
+
+  if(customerSession?.session_token){
+
+    try{
+
+      await supabaseClient
+        .rpc(
+          "customer_logout",
+          {
+            p_session_token:
+              customerSession.session_token
+          }
+        );
+
+    }catch(e){
+
+      console.error(e);
+
+    }
+
+  }
+
+
+  localStorage.removeItem(
+    SESSION_KEY
+  );
+
+
+  customerSession = null;
+
+
+  showLogin();
+
+}
+
+
+/* =========================
+   SHOW LOGIN
+========================= */
+
+function showLogin(){
+
+  document.getElementById(
+    "dashboardSection"
+  ).classList.add("hidden");
+
+
+  document.getElementById(
+    "loginSection"
+  ).classList.remove("hidden");
+
+}
+
+
+/* =========================
+   SESSION CHECK
+========================= */
+
+async function checkSavedSession(){
+
+  const saved =
+    localStorage.getItem(
+      SESSION_KEY
+    );
+
+
+  if(!saved){
+
+    showLogin();
+
+    return;
+  }
+
+
+  try{
+
+    customerSession =
+      JSON.parse(saved);
+
+  }catch(e){
+
+    localStorage.removeItem(
+      SESSION_KEY
+    );
+
+    showLogin();
+
+    return;
+  }
+
+
+  if(
+    !customerSession ||
+    !customerSession.session_token
+  ){
+
+    localStorage.removeItem(
+      SESSION_KEY
+    );
+
+    showLogin();
+
+    return;
+  }
+
+
+  await showDashboard();
+
+}
+
+
+/* =========================
+   HELPERS
+========================= */
+
+function formatNumber(n){
+
+  return Number(n || 0)
+    .toLocaleString(
+      "en-US",
+      {
+        maximumFractionDigits:2
+      }
+    );
+
+}
+
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   PUBLIC RATE
+========================= */
+
+async function loadPublicRate(){
+
+  const {data,error} =
+    await supabaseClient
+      .rpc(
+        "get_customer_current_rate"
+      );
+
+
+  const el =
+    document.getElementById(
+      "publicRate"
+    );
+
+
+  if(error){
+
+    if(el){
+      el.textContent =
+        "ریٹ دستیاب نہیں";
+    }
+
+    return;
+  }
+
+
+  const rate =
+    Number(data || 0);
+
+
+  if(el){
+
+    el.textContent =
+      formatNumber(rate);
+
+  }
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+loadPublicRate();
+
+checkSavedSession();
+
+</script>
+
+</body>
+</html>
