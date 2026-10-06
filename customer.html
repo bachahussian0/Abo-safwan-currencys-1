@@ -1,0 +1,3677 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Abo Safwan Currency | Saudi Riyal Exchange</title>
+
+<meta name="description" content="Abo Safwan Currency - Saudi Riyal Exchange Service">
+<meta name="theme-color" content="#063f35">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --green:#063f35;
+  --green2:#075c4e;
+  --green3:#0b7562;
+  --gold:#d9ad50;
+  --gold2:#f1d17c;
+  --cream:#fffaf0;
+  --bg:#f5f7f6;
+  --white:#fff;
+  --text:#172522;
+  --muted:#71807b;
+  --border:#e3e9e6;
+  --danger:#c73535;
+  --shadow:0 15px 45px rgba(4,48,41,.10);
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:
+    Arial,
+    "Noto Nastaliq Urdu",
+    "Jameel Noori Nastaleeq",
+    sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.8;
+}
+
+button,
+input{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:999;
+
+  background:rgba(6,63,53,.97);
+  backdrop-filter:blur(15px);
+
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.header-inner{
+  max-width:1200px;
+  margin:auto;
+  padding:13px 20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+
+.brand-icon{
+  width:45px;
+  height:45px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:13px;
+
+  background:linear-gradient(
+    135deg,
+    var(--gold2),
+    var(--gold)
+  );
+
+  color:var(--green);
+
+  font-size:24px;
+  font-weight:bold;
+
+  box-shadow:0 5px 20px rgba(217,173,80,.25);
+}
+
+.brand h1{
+  color:white;
+  font-size:19px;
+  line-height:1.2;
+}
+
+.brand span{
+  color:var(--gold2);
+  font-size:11px;
+}
+
+.nav{
+  display:flex;
+  gap:5px;
+  align-items:center;
+}
+
+.nav button{
+  background:transparent;
+  color:#fff;
+  border:0;
+  padding:8px 11px;
+  border-radius:8px;
+  font-size:13px;
+}
+
+.nav button:hover{
+  background:rgba(255,255,255,.10);
+  color:var(--gold2);
+}
+
+.menu-btn{
+  display:none;
+
+  background:transparent;
+  border:1px solid rgba(255,255,255,.2);
+  color:white;
+
+  width:42px;
+  height:42px;
+  border-radius:10px;
+
+  font-size:20px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  position:relative;
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(217,173,80,.20),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 10% 80%,
+      rgba(11,117,98,.25),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #032d27,
+      #075c4e
+    );
+
+  color:white;
+}
+
+.hero-inner{
+  max-width:1200px;
+  margin:auto;
+
+  min-height:590px;
+
+  padding:75px 20px;
+
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  align-items:center;
+  gap:55px;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+
+  padding:7px 14px;
+
+  border:1px solid rgba(241,209,124,.35);
+  background:rgba(255,255,255,.06);
+
+  color:var(--gold2);
+
+  border-radius:30px;
+
+  font-size:13px;
+
+  margin-bottom:20px;
+}
+
+.hero h2{
+  font-size:54px;
+  line-height:1.2;
+  margin-bottom:12px;
+}
+
+.hero h2 span{
+  color:var(--gold2);
+}
+
+.hero h3{
+  font-size:23px;
+  font-weight:500;
+  color:#d8e4e1;
+  margin-bottom:18px;
+}
+
+.hero-text{
+  color:#c4d5d0;
+  font-size:17px;
+  max-width:650px;
+  margin-bottom:28px;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.btn-gold{
+  background:linear-gradient(
+    135deg,
+    var(--gold2),
+    var(--gold)
+  );
+
+  color:#17372f;
+
+  border:0;
+
+  padding:13px 23px;
+
+  border-radius:10px;
+
+  font-weight:bold;
+
+  box-shadow:
+    0 8px 25px rgba(217,173,80,.22);
+}
+
+.btn-outline{
+  background:transparent;
+  color:white;
+
+  border:1px solid rgba(255,255,255,.3);
+
+  padding:12px 23px;
+
+  border-radius:10px;
+}
+
+.btn-outline:hover{
+  background:white;
+  color:var(--green);
+}
+
+/* =========================
+   HERO RATE CARD
+========================= */
+
+.rate-card{
+  position:relative;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.13),
+      rgba(255,255,255,.045)
+    );
+
+  border:1px solid rgba(255,255,255,.17);
+
+  border-radius:25px;
+
+  padding:30px;
+
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.18);
+
+  backdrop-filter:blur(15px);
+}
+
+.rate-card-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:28px;
+}
+
+.rate-card-title{
+  color:#d5e2df;
+  font-size:14px;
+}
+
+.live{
+  display:flex;
+  align-items:center;
+  gap:6px;
+
+  color:#b7e8cf;
+  font-size:12px;
+}
+
+.live-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#55d48a;
+  box-shadow:0 0 10px #55d48a;
+}
+
+.currency-display{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+
+  margin-bottom:25px;
+}
+
+.currency{
+  width:72px;
+  height:72px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:var(--gold2);
+  color:var(--green);
+
+  font-size:25px;
+  font-weight:bold;
+
+  box-shadow:
+    0 10px 30px rgba(217,173,80,.2);
+}
+
+.exchange-arrow{
+  color:var(--gold2);
+  font-size:24px;
+}
+
+.rate-number{
+  text-align:center;
+}
+
+.rate-number small{
+  display:block;
+  color:#c2d2ce;
+  font-size:13px;
+}
+
+.rate-number strong{
+  display:block;
+  color:var(--gold2);
+  font-size:46px;
+  line-height:1.3;
+}
+
+.rate-number span{
+  color:#d8e4e1;
+  font-size:13px;
+}
+
+/* =========================
+   QUICK STATS
+========================= */
+
+.quick-stats{
+  max-width:1000px;
+  margin:-45px auto 0;
+  position:relative;
+  z-index:10;
+
+  padding:0 20px;
+}
+
+.stats-box{
+  background:white;
+
+  border-radius:18px;
+
+  box-shadow:var(--shadow);
+
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+
+  overflow:hidden;
+}
+
+.stat{
+  text-align:center;
+  padding:23px 15px;
+  border-left:1px solid var(--border);
+}
+
+.stat:last-child{
+  border-left:0;
+}
+
+.stat-icon{
+  font-size:23px;
+  margin-bottom:3px;
+}
+
+.stat strong{
+  display:block;
+  color:var(--green);
+  font-size:17px;
+}
+
+.stat span{
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section{
+  padding:85px 20px;
+}
+
+.section-inner{
+  max-width:1200px;
+  margin:auto;
+}
+
+.section-heading{
+  text-align:center;
+  margin-bottom:45px;
+}
+
+.section-heading .small{
+  color:var(--gold);
+  font-weight:bold;
+  font-size:13px;
+}
+
+.section-heading h2{
+  color:var(--green);
+  font-size:34px;
+  margin:5px 0 8px;
+}
+
+.section-heading p{
+  color:var(--muted);
+  max-width:600px;
+  margin:auto;
+}
+
+/* =========================
+   SERVICES
+========================= */
+
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.service-card{
+  background:white;
+  border:1px solid var(--border);
+
+  border-radius:17px;
+
+  padding:28px 22px;
+
+  transition:.25s;
+
+  box-shadow:
+    0 5px 20px rgba(0,0,0,.03);
+}
+
+.service-card:hover{
+  transform:translateY(-5px);
+  box-shadow:var(--shadow);
+}
+
+.service-icon{
+  width:50px;
+  height:50px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:13px;
+
+  background:#edf6f3;
+  color:var(--green);
+
+  font-size:24px;
+
+  margin-bottom:18px;
+}
+
+.service-card h3{
+  color:var(--green);
+  font-size:18px;
+  margin-bottom:7px;
+}
+
+.service-card p{
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* =========================
+   EXCHANGE CALCULATOR
+========================= */
+
+.exchange-section{
+  background:#eef4f2;
+}
+
+.calculator{
+  max-width:850px;
+  margin:auto;
+
+  background:white;
+
+  border-radius:22px;
+
+  padding:32px;
+
+  box-shadow:var(--shadow);
+
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+}
+
+.calc-info{
+  background:
+    linear-gradient(
+      145deg,
+      var(--green),
+      var(--green2)
+    );
+
+  color:white;
+
+  border-radius:17px;
+
+  padding:28px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.calc-info h3{
+  color:var(--gold2);
+  font-size:25px;
+  margin-bottom:12px;
+}
+
+.calc-info p{
+  color:#d0dfdb;
+  font-size:14px;
+}
+
+.calc-rate{
+  margin-top:25px;
+  padding-top:20px;
+  border-top:1px solid rgba(255,255,255,.15);
+}
+
+.calc-rate span{
+  color:#c4d5d0;
+  font-size:12px;
+}
+
+.calc-rate strong{
+  display:block;
+  color:var(--gold2);
+  font-size:32px;
+}
+
+.calc-form{
+  padding:10px;
+}
+
+.input-label{
+  display:block;
+  font-weight:bold;
+  color:var(--green);
+  margin-bottom:7px;
+  font-size:14px;
+}
+
+.input{
+  width:100%;
+
+  padding:13px 14px;
+
+  border:1px solid var(--border);
+
+  border-radius:10px;
+
+  background:#fbfcfc;
+
+  outline:none;
+
+  font-size:16px;
+
+  direction:rtl;
+}
+
+.input:focus{
+  border-color:var(--green3);
+  box-shadow:0 0 0 3px rgba(11,117,98,.08);
+}
+
+.form-group{
+  margin-bottom:18px;
+}
+
+.calc-result{
+  background:#f2f8f5;
+  border:1px solid #d9ebe4;
+
+  padding:17px;
+
+  border-radius:12px;
+
+  text-align:center;
+
+  margin-bottom:16px;
+}
+
+.calc-result span{
+  display:block;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.calc-result strong{
+  color:var(--green);
+  font-size:29px;
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+.login-section{
+  background:
+    linear-gradient(
+      180deg,
+      #f5f7f6,
+      #edf4f1
+    );
+}
+
+.login-wrapper{
+  max-width:850px;
+  margin:auto;
+
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+
+  background:white;
+
+  border-radius:22px;
+
+  overflow:hidden;
+
+  box-shadow:var(--shadow);
+}
+
+.login-side{
+  background:
+    linear-gradient(
+      145deg,
+      var(--green),
+      var(--green2)
+    );
+
+  color:white;
+
+  padding:35px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.login-side h3{
+  color:var(--gold2);
+  font-size:25px;
+  margin-bottom:10px;
+}
+
+.login-side p{
+  color:#d0dfdb;
+  font-size:14px;
+}
+
+.login-side ul{
+  margin-top:22px;
+  list-style:none;
+}
+
+.login-side li{
+  margin:10px 0;
+  color:#dce9e5;
+  font-size:13px;
+}
+
+.login-side li::before{
+  content:"✓";
+  color:var(--gold2);
+  margin-left:8px;
+  font-weight:bold;
+}
+
+.auth{
+  padding:35px;
+}
+
+.auth h2{
+  color:var(--green);
+  margin-bottom:5px;
+}
+
+.auth-sub{
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:23px;
+}
+
+.action-row{
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+}
+
+.btn-primary{
+  background:var(--green);
+  color:white;
+  border:0;
+
+  padding:12px 20px;
+
+  border-radius:9px;
+
+  font-weight:bold;
+}
+
+.btn-secondary{
+  background:#edf3f1;
+  color:var(--green);
+  border:0;
+
+  padding:12px 20px;
+
+  border-radius:9px;
+
+  font-weight:bold;
+}
+
+.message{
+  display:none;
+
+  padding:11px 13px;
+
+  border-radius:9px;
+
+  margin-top:15px;
+
+  font-size:13px;
+}
+
+.success{
+  display:block;
+  background:#e7f7ee;
+  color:#17663e;
+}
+
+.error{
+  display:block;
+  background:#fff0f0;
+  color:#a52727;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard{
+  max-width:850px;
+  margin:35px auto;
+
+  background:white;
+
+  border-radius:22px;
+
+  padding:30px;
+
+  box-shadow:var(--shadow);
+}
+
+.dashboard-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+
+  padding-bottom:22px;
+  border-bottom:1px solid var(--border);
+
+  margin-bottom:25px;
+}
+
+.customer-name{
+  color:var(--green);
+  font-size:22px;
+  font-weight:bold;
+}
+
+.customer-mobile{
+  color:var(--muted);
+  direction:ltr;
+  text-align:right;
+  font-size:13px;
+}
+
+.order-card{
+  background:#f7faf9;
+
+  border:1px solid var(--border);
+
+  border-radius:16px;
+
+  padding:23px;
+
+  margin-bottom:22px;
+}
+
+.order-card h3{
+  color:var(--green);
+  margin-bottom:18px;
+}
+
+.rate-mini{
+  background:white;
+  border:1px solid var(--border);
+
+  border-radius:12px;
+
+  text-align:center;
+
+  padding:13px;
+
+  margin-bottom:15px;
+}
+
+.rate-mini span{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.rate-mini strong{
+  color:var(--green);
+  font-size:25px;
+}
+
+.total-display{
+  background:
+    linear-gradient(
+      135deg,
+      #edf7f3,
+      #f8fbfa
+    );
+
+  border:1px solid #d9ebe4;
+
+  border-radius:12px;
+
+  padding:17px;
+
+  text-align:center;
+
+  margin:17px 0;
+}
+
+.total-display span{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.total-display strong{
+  display:block;
+  color:var(--green);
+  font-size:30px;
+}
+
+.tracking-card{
+  border:1px solid #ead69d;
+
+  background:#fffaf0;
+
+  border-radius:16px;
+
+  padding:22px;
+}
+
+.tracking-card h3{
+  color:#70551b;
+  margin-bottom:5px;
+}
+
+.tracking-number{
+  display:block;
+
+  direction:ltr;
+
+  text-align:center;
+
+  color:var(--green);
+
+  font-size:21px;
+
+  font-weight:bold;
+
+  margin:12px 0;
+
+  letter-spacing:1px;
+}
+
+.status{
+  display:inline-block;
+
+  padding:4px 11px;
+
+  border-radius:20px;
+
+  font-size:12px;
+
+  font-weight:bold;
+}
+
+.pending{
+  background:#fff0c7;
+  color:#775900;
+}
+
+.approved{
+  background:#dff5e9;
+  color:#17653e;
+}
+
+.result{
+  margin-top:15px;
+
+  padding:15px;
+
+  background:white;
+
+  border-radius:11px;
+
+  border:1px solid var(--border);
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+}
+
+.about-card{
+  background:white;
+
+  border-radius:18px;
+
+  padding:30px;
+
+  box-shadow:
+    0 5px 25px rgba(0,0,0,.05);
+}
+
+.about-card h3{
+  color:var(--green);
+  font-size:23px;
+  margin-bottom:13px;
+}
+
+.about-card p{
+  color:var(--muted);
+  font-size:14px;
+  margin-bottom:12px;
+}
+
+.feature-list{
+  list-style:none;
+}
+
+.feature-list li{
+  padding:10px 0;
+  border-bottom:1px solid var(--border);
+  color:#50605b;
+  font-size:14px;
+}
+
+.feature-list li::before{
+  content:"✓";
+  color:var(--green3);
+  font-weight:bold;
+  margin-left:9px;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact{
+  background:var(--green);
+  color:white;
+}
+
+.contact .section-heading h2{
+  color:white;
+}
+
+.contact .section-heading p{
+  color:#c5d5d1;
+}
+
+.contact-box{
+  max-width:650px;
+  margin:auto;
+
+  background:rgba(255,255,255,.07);
+
+  border:1px solid rgba(255,255,255,.12);
+
+  border-radius:20px;
+
+  padding:35px;
+
+  text-align:center;
+}
+
+.email-box{
+  direction:ltr;
+
+  display:inline-block;
+
+  margin-top:18px;
+
+  padding:14px 20px;
+
+  background:rgba(255,255,255,.09);
+
+  border-radius:10px;
+
+  color:var(--gold2);
+
+  font-weight:bold;
+
+  word-break:break-word;
+}
+
+/* =========================
+   POLICIES
+========================= */
+
+.policy{
+  max-width:900px;
+  margin:auto;
+
+  background:white;
+
+  border-radius:18px;
+
+  padding:30px;
+
+  box-shadow:
+    0 5px 25px rgba(0,0,0,.05);
+}
+
+.policy h3{
+  color:var(--green);
+  margin:20px 0 6px;
+}
+
+.policy h3:first-child{
+  margin-top:0;
+}
+
+.policy p{
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  background:#032d27;
+  color:#b9c9c5;
+
+  text-align:center;
+
+  padding:28px 20px;
+}
+
+.footer strong{
+  color:var(--gold2);
+  font-size:18px;
+}
+
+.footer p{
+  font-size:12px;
+  margin-top:4px;
+}
+
+/* =========================
+   HIDDEN
+========================= */
+
+.hidden{
+  display:none !important;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+
+  .hero-inner{
+    grid-template-columns:1fr;
+    text-align:center;
+    gap:35px;
+  }
+
+  .hero-text{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .hero-buttons{
+    justify-content:center;
+  }
+
+  .rate-card{
+    max-width:480px;
+    margin:auto;
+    width:100%;
+  }
+
+  .service-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .login-wrapper{
+    grid-template-columns:1fr;
+  }
+
+  .login-side{
+    padding:25px;
+  }
+
+  .about-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:650px){
+
+  .header-inner{
+    flex-wrap:wrap;
+  }
+
+  .menu-btn{
+    display:block;
+  }
+
+  .nav{
+    display:none;
+    width:100%;
+    flex-direction:column;
+    align-items:stretch;
+    padding-top:8px;
+  }
+
+  .nav.show{
+    display:flex;
+  }
+
+  .nav button{
+    text-align:center;
+    background:rgba(255,255,255,.06);
+  }
+
+  .hero-inner{
+    min-height:auto;
+    padding:55px 18px;
+  }
+
+  .hero h2{
+    font-size:38px;
+  }
+
+  .hero h3{
+    font-size:19px;
+  }
+
+  .hero-text{
+    font-size:15px;
+  }
+
+  .quick-stats{
+    margin-top:-25px;
+  }
+
+  .stats-box{
+    grid-template-columns:1fr;
+  }
+
+  .stat{
+    border-left:0;
+    border-bottom:1px solid var(--border);
+  }
+
+  .stat:last-child{
+    border-bottom:0;
+  }
+
+  .section{
+    padding:60px 15px;
+  }
+
+  .section-heading h2{
+    font-size:28px;
+  }
+
+  .service-grid{
+    grid-template-columns:1fr;
+  }
+
+  .calculator{
+    grid-template-columns:1fr;
+    padding:18px;
+  }
+
+  .login-side,
+  .auth{
+    padding:25px 20px;
+  }
+
+  .dashboard{
+    margin:20px 10px;
+    padding:20px 15px;
+  }
+
+  .dashboard-top{
+    align-items:flex-start;
+  }
+
+  .currency{
+    width:60px;
+    height:60px;
+    font-size:20px;
+  }
+
+  .rate-number strong{
+    font-size:39px;
+  }
+
+  .contact-box{
+    padding:25px 15px;
+  }
+
+}
+
+@media(max-width:400px){
+
+  .brand h1{
+    font-size:16px;
+  }
+
+  .hero h2{
+    font-size:32px;
+  }
+
+  .hero-buttons button{
+    width:100%;
+  }
+
+  .currency-display{
+    gap:10px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+<div class="header-inner">
+
+  <a href="#home" class="brand">
+
+    <div class="brand-icon">
+      ﷲ
+    </div>
+
+    <div>
+      <h1>Abo Safwan Currency</h1>
+      <span>Saudi Riyal Exchange Service</span>
+    </div>
+
+  </a>
+
+  <button
+    class="menu-btn"
+    onclick="toggleMenu()"
+  >
+    ☰
+  </button>
+
+  <nav id="nav" class="nav">
+
+    <button onclick="go('home')">
+      ہوم
+    </button>
+
+    <button onclick="go('exchange')">
+      ریٹ
+    </button>
+
+    <button onclick="go('services')">
+      خدمات
+    </button>
+
+    <button onclick="go('about')">
+      ہمارے بارے میں
+    </button>
+
+    <button onclick="go('how')">
+      طریقہ کار
+    </button>
+
+    <button onclick="go('login')">
+      کسٹمر لاگ اِن
+    </button>
+
+    <button onclick="go('contact')">
+      رابطہ
+    </button>
+
+  </nav>
+
+</div>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section id="home" class="hero">
+
+<div class="hero-inner">
+
+  <div class="hero-content">
+
+    <div class="badge">
+      ● قابلِ اعتماد سعودی ریال ایکسچینج سروس
+    </div>
+
+    <h2>
+      سعودی ریال
+      <span>آسانی سے ایکسچینج</span>
+    </h2>
+
+    <h3>
+      Abo Safwan Currency
+    </h3>
+
+    <p class="hero-text">
+      سعودی ریال کے حساب، آن لائن آرڈر اور
+      Tracking Number کے لیے ایک آسان اور
+      منظم ڈیجیٹل سروس۔
+    </p>
+
+    <div class="hero-buttons">
+
+      <button
+        class="btn-gold"
+        onclick="go('login')"
+      >
+        🔐 کسٹمر اکاؤنٹ
+      </button>
+
+      <button
+        class="btn-outline"
+        onclick="go('exchange')"
+      >
+        💱 آج کا ریٹ
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- RATE CARD -->
+
+  <div class="rate-card">
+
+    <div class="rate-card-top">
+
+      <div class="rate-card-title">
+        موجودہ سعودی ریال ریٹ
+      </div>
+
+      <div class="live">
+        <span class="live-dot"></span>
+        Live Rate
+      </div>
+
+    </div>
+
+
+    <div class="currency-display">
+
+      <div class="currency">
+        SAR
+      </div>
+
+      <div class="exchange-arrow">
+        ⇄
+      </div>
+
+      <div class="currency">
+        PKR
+      </div>
+
+    </div>
+
+
+    <div class="rate-number">
+
+      <small>
+        1 Saudi Riyal =
+      </small>
+
+      <strong id="heroRate">
+        ...
+      </strong>
+
+      <span>
+        پاکستانی روپے
+      </span>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     QUICK STATS
+========================= -->
+
+<div class="quick-stats">
+
+<div class="stats-box">
+
+  <div class="stat">
+
+    <div class="stat-icon">
+      💱
+    </div>
+
+    <strong>
+      سعودی ریال
+    </strong>
+
+    <span>
+      SAR Exchange
+    </span>
+
+  </div>
+
+
+  <div class="stat">
+
+    <div class="stat-icon">
+      🔐
+    </div>
+
+    <strong>
+      محفوظ اکاؤنٹ
+    </strong>
+
+    <span>
+      Customer Account
+    </span>
+
+  </div>
+
+
+  <div class="stat">
+
+    <div class="stat-icon">
+      🔎
+    </div>
+
+    <strong>
+      Tracking
+    </strong>
+
+    <span>
+      Order Tracking
+    </span>
+
+  </div>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     EXCHANGE
+========================= -->
+
+<section id="exchange" class="section exchange-section">
+
+<div class="section-inner">
+
+  <div class="section-heading">
+
+    <div class="small">
+      CURRENT RATE
+    </div>
+
+    <h2>
+      سعودی ریال ایکسچینج
+    </h2>
+
+    <p>
+      موجودہ ریٹ دیکھیں اور اپنی سعودی ریال
+      کی رقم کا پاکستانی روپے میں اندازہ لگائیں۔
+    </p>
+
+  </div>
+
+
+  <div class="calculator">
+
+    <div class="calc-info">
+
+      <h3>
+        آج کا ریٹ
+      </h3>
+
+      <p>
+        ریٹ سسٹم سے خودکار طور پر حاصل کیا جاتا ہے۔
+        کسٹمر اپنی طرف سے ریٹ تبدیل نہیں کر سکتا۔
+      </p>
+
+      <div class="calc-rate">
+
+        <span>
+          1 SAR =
+        </span>
+
+        <strong id="exchangeRate">
+          ...
+        </strong>
+
+        <span>
+          PKR
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="calc-form">
+
+      <div class="form-group">
+
+        <label class="input-label">
+          سعودی ریال کی رقم
+        </label>
+
+        <input
+          id="publicAmount"
+          class="input"
+          type="number"
+          min="0"
+          step="0.01"
+          placeholder="مثلاً 100"
+          oninput="publicCalculate()"
+        >
+
+      </div>
+
+
+      <div class="calc-result">
+
+        <span>
+          اندازاً پاکستانی روپے
+        </span>
+
+        <strong id="publicTotal">
+          0 PKR
+        </strong>
+
+      </div>
+
+
+      <button
+        class="btn-primary"
+        style="width:100%;"
+        onclick="go('login')"
+      >
+        آرڈر دینے کے لیے لاگ اِن کریں
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SERVICES
+========================= -->
+
+<section id="services" class="section">
+
+<div class="section-inner">
+
+  <div class="section-heading">
+
+    <div class="small">
+      OUR SERVICES
+    </div>
+
+    <h2>
+      ہماری خدمات
+    </h2>
+
+    <p>
+      سعودی ریال ایکسچینج کے لیے آسان
+      اور منظم سہولیات۔
+    </p>
+
+  </div>
+
+
+  <div class="service-grid">
+
+    <div class="service-card">
+
+      <div class="service-icon">
+        💱
+      </div>
+
+      <h3>
+        سعودی ریال ایکسچینج
+      </h3>
+
+      <p>
+        سعودی ریال سے پاکستانی روپے کا
+        موجودہ حساب آسانی سے معلوم کریں۔
+      </p>
+
+    </div>
+
+
+    <div class="service-card">
+
+      <div class="service-icon">
+        🧾
+      </div>
+
+      <h3>
+        آن لائن آرڈر
+      </h3>
+
+      <p>
+        کسٹمر اپنے اکاؤنٹ سے نیا آرڈر
+        آسانی سے درج کر سکتا ہے۔
+      </p>
+
+    </div>
+
+
+    <div class="service-card">
+
+      <div class="service-icon">
+        🔎
+      </div>
+
+      <h3>
+        آرڈر Tracking
+      </h3>
+
+      <p>
+        منفرد Tracking Number کے ذریعے
+        اپنے آرڈر کی صورتحال دیکھیں۔
+      </p>
+
+    </div>
+
+
+    <div class="service-card">
+
+      <div class="service-icon">
+        🔐
+      </div>
+
+      <h3>
+        محفوظ اکاؤنٹ
+      </h3>
+
+      <p>
+        کسٹمر کی معلومات اور آرڈر اس کے
+        اپنے اکاؤنٹ کے ساتھ محفوظ رہتے ہیں۔
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     HOW IT WORKS
+========================= -->
+
+<section id="how" class="section exchange-section">
+
+<div class="section-inner">
+
+  <div class="section-heading">
+
+    <div class="small">
+      HOW IT WORKS
+    </div>
+
+    <h2>
+      کیسے استعمال کریں؟
+    </h2>
+
+    <p>
+      صرف چند آسان مراحل میں اپنا آرڈر درج کریں۔
+    </p>
+
+  </div>
+
+
+  <div class="service-grid">
+
+    <div class="service-card">
+
+      <div class="service-icon">
+        1
+      </div>
+
+      <h3>
+        اکاؤنٹ بنائیں
+      </h3>
+
+      <p>
+        نام، موبائل نمبر اور 4 ہندسوں کا PIN
+        درج کرکے اکاؤنٹ بنائیں۔
+      </p>
+
+    </div>
+
+
+    <div class="service-card">
+
+      <div class="service-icon">
+        2
+      </div>
+
+      <h3>
+        لاگ اِن کریں
+      </h3>
+
+      <p>
+        موبائل نمبر اور PIN کے ذریعے
+        اپنے اکاؤنٹ میں داخل ہوں۔
+      </p>
+
+    </div>
+
+
+    <div class="service-card">
+
+      <div class="service-icon">
+        3
+      </div>
+
+      <h3>
+        آرڈر دیں
+      </h3>
+
+      <p>
+        وصول کنندہ اور سعودی ریال کی رقم
+        درج کرکے آرڈر جمع کریں۔
+      </p>
+
+    </div>
+
+
+    <div class="service-card">
+
+      <div class="service-icon">
+        4
+      </div>
+
+      <h3>
+        Tracking Number
+      </h3>
+
+      <p>
+        آرڈر کا Tracking Number محفوظ کریں
+        اور بعد میں اس کی صورتحال دیکھیں۔
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     LOGIN
+========================= -->
+
+<section id="login" class="section login-section">
+
+<div class="section-inner">
+
+  <div class="section-heading">
+
+    <div class="small">
+      CUSTOMER AREA
+    </div>
+
+    <h2>
+      کسٹمر اکاؤنٹ
+    </h2>
+
+    <p>
+      اپنے اکاؤنٹ سے آرڈر دیں اور Tracking Number
+      کے ذریعے معلومات دیکھیں۔
+    </p>
+
+  </div>
+
+
+  <div
+    id="loginWrapper"
+    class="login-wrapper"
+  >
+
+    <div class="login-side">
+
+      <h3>
+        Abo Safwan Currency
+      </h3>
+
+      <p>
+        آپ کے سعودی ریال ایکسچینج آرڈر کے لیے
+        آسان اور منظم نظام۔
+      </p>
+
+      <ul>
+
+        <li>
+          موجودہ ریٹ خودکار
+        </li>
+
+        <li>
+          آسان آن لائن آرڈر
+        </li>
+
+        <li>
+          منفرد Tracking Number
+        </li>
+
+        <li>
+          کسٹمر مخصوص سیشن
+        </li>
+
+      </ul>
+
+    </div>
+
+
+    <div class="auth">
+
+      <!-- LOGIN BOX -->
+
+      <div id="loginBox">
+
+        <h2>
+          لاگ اِن
+        </h2>
+
+        <p class="auth-sub">
+          موبائل نمبر اور 4 ہندسوں کا PIN درج کریں۔
+        </p>
+
+
+        <div class="form-group">
+
+          <label class="input-label">
+            موبائل نمبر
+          </label>
+
+          <input
+            id="loginMobile"
+            class="input"
+            type="tel"
+            inputmode="numeric"
+            placeholder="03481234567"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label class="input-label">
+            PIN
+          </label>
+
+          <input
+            id="loginPin"
+            class="input"
+            type="password"
+            inputmode="numeric"
+            maxlength="4"
+            placeholder="4 ہندسے"
+          >
+
+        </div>
+
+
+        <div class="action-row">
+
+          <button
+            class="btn-primary"
+            onclick="loginCustomer()"
+          >
+            لاگ اِن
+          </button>
+
+          <button
+            class="btn-secondary"
+            onclick="showRegister()"
+          >
+            نیا اکاؤنٹ
+          </button>
+
+        </div>
+
+
+        <div id="loginMessage" class="message"></div>
+
+      </div>
+
+
+      <!-- REGISTER -->
+
+      <div id="registerBox" class="hidden">
+
+        <h2>
+          نیا اکاؤنٹ
+        </h2>
+
+        <p class="auth-sub">
+          اپنا اکاؤنٹ بنانے کے لیے معلومات درج کریں۔
+        </p>
+
+
+        <div class="form-group">
+
+          <label class="input-label">
+            نام
+          </label>
+
+          <input
+            id="registerName"
+            class="input"
+            type="text"
+            placeholder="اپنا نام"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label class="input-label">
+            موبائل نمبر
+          </label>
+
+          <input
+            id="registerMobile"
+            class="input"
+            type="tel"
+            inputmode="numeric"
+            placeholder="03481234567"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label class="input-label">
+            4 ہندسوں کا PIN
+          </label>
+
+          <input
+            id="registerPin"
+            class="input"
+            type="password"
+            inputmode="numeric"
+            maxlength="4"
+            placeholder="••••"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label class="input-label">
+            PIN دوبارہ درج کریں
+          </label>
+
+          <input
+            id="registerPinConfirm"
+            class="input"
+            type="password"
+            inputmode="numeric"
+            maxlength="4"
+            placeholder="••••"
+          >
+
+        </div>
+
+
+        <div class="action-row">
+
+          <button
+            class="btn-primary"
+            onclick="registerCustomer()"
+          >
+            اکاؤنٹ بنائیں
+          </button>
+
+          <button
+            class="btn-secondary"
+            onclick="showLogin()"
+          >
+            واپس لاگ اِن
+          </button>
+
+        </div>
+
+
+        <div id="registerMessage" class="message"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       DASHBOARD
+  ========================= -->
+
+  <div
+    id="dashboard"
+    class="dashboard hidden"
+  >
+
+    <div class="dashboard-top">
+
+      <div>
+
+        <div class="customer-name">
+          السلام علیکم،
+          <span id="customerName"></span>
+        </div>
+
+        <div
+          id="customerMobile"
+          class="customer-mobile"
+        ></div>
+
+      </div>
+
+      <button
+        class="btn-secondary"
+        onclick="logoutCustomer()"
+      >
+        لاگ آؤٹ
+      </button>
+
+    </div>
+
+
+    <!-- ORDER -->
+
+    <div class="order-card">
+
+      <h3>
+        🧾 نیا آرڈر
+      </h3>
+
+
+      <div class="form-group">
+
+        <label class="input-label">
+          وصول کنندہ کا نام
+        </label>
+
+        <input
+          id="receiver"
+          class="input"
+          type="text"
+          placeholder="وصول کنندہ کا نام"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label class="input-label">
+          سعودی ریال کی رقم
+        </label>
+
+        <input
+          id="sarAmount"
+          class="input"
+          type="number"
+          min="1"
+          step="0.01"
+          placeholder="مثلاً 100"
+          oninput="calculateOrder()"
+        >
+
+      </div>
+
+
+      <div class="rate-mini">
+
+        <span>
+          موجودہ ریٹ
+        </span>
+
+        <strong id="customerRate">
+          ...
+        </strong>
+
+        <span>
+          1 SAR = PKR
+        </span>
+
+      </div>
+
+
+      <div class="total-display">
+
+        <span>
+          کل پاکستانی روپے
+        </span>
+
+        <strong id="orderTotal">
+          0 PKR
+        </strong>
+
+      </div>
+
+
+      <button
+        class="btn-primary"
+        style="width:100%;"
+        onclick="createOrder()"
+      >
+        آرڈر جمع کریں
+      </button>
+
+
+      <div id="orderMessage" class="message"></div>
+
+    </div>
+
+
+    <!-- TRACKING -->
+
+    <div class="tracking-card">
+
+      <h3>
+        🔎 Tracking Number
+      </h3>
+
+      <p style="color:#806c3c;font-size:13px;">
+        اپنے آرڈر کا Tracking Number درج کریں۔
+      </p>
+
+
+      <div
+        class="form-group"
+        style="margin-top:15px;"
+      >
+
+        <input
+          id="trackingInput"
+          class="input"
+          dir="ltr"
+          placeholder="AS-YYYYMMDD-XXXXXXXX"
+        >
+
+      </div>
+
+
+      <button
+        class="btn-primary"
+        onclick="searchTracking()"
+      >
+        Tracking تلاش کریں
+      </button>
+
+
+      <div
+        id="trackingResult"
+        class="result hidden"
+      ></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section id="about" class="section">
+
+<div class="section-inner">
+
+  <div class="section-heading">
+
+    <div class="small">
+      ABOUT US
+    </div>
+
+    <h2>
+      ہمارے بارے میں
+    </h2>
+
+  </div>
+
+
+  <div class="about-grid">
+
+    <div class="about-card">
+
+      <h3>
+        Abo Safwan Currency
+      </h3>
+
+      <p>
+        Abo Safwan Currency سعودی ریال
+        ایکسچینج سروس کے لیے تیار کیا گیا
+        ایک جدید آن لائن نظام ہے۔
+      </p>
+
+      <p>
+        ہمارا مقصد کسٹمر کے لیے ریٹ،
+        آرڈر اور Tracking کی معلومات کو
+        ایک آسان نظام میں فراہم کرنا ہے۔
+      </p>
+
+    </div>
+
+
+    <div class="about-card">
+
+      <h3>
+        ہماری خصوصیات
+      </h3>
+
+      <ul class="feature-list">
+
+        <li>
+          موجودہ سعودی ریال ریٹ
+        </li>
+
+        <li>
+          آسان Customer Account
+        </li>
+
+        <li>
+          محفوظ PIN Login
+        </li>
+
+        <li>
+          خودکار PKR حساب
+        </li>
+
+        <li>
+          منفرد Tracking Number
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section id="contact" class="section contact">
+
+<div class="section-inner">
+
+  <div class="section-heading">
+
+    <div class="small">
+      CONTACT
+    </div>
+
+    <h2>
+      رابطہ کریں
+    </h2>
+
+    <p>
+      Abo Safwan Currency سے رابطے کے لیے
+      صرف Email استعمال کریں۔
+    </p>
+
+  </div>
+
+
+  <div class="contact-box">
+
+    <h3>
+      Abo Safwan Currency
+    </h3>
+
+    <p>
+      Saudi Riyal Exchange Service
+    </p>
+
+    <a
+      class="email-box"
+      href="mailto:bachahussain355228@gmail.com"
+    >
+      📧 bachahussain355228@gmail.com
+    </a>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     PRIVACY
+========================= -->
+
+<section id="privacy" class="section">
+
+<div class="section-inner">
+
+  <div class="section-heading">
+
+    <div class="small">
+      PRIVACY
+    </div>
+
+    <h2>
+      Privacy Policy
+    </h2>
+
+  </div>
+
+
+  <div class="policy">
+
+    <h3>
+      معلومات کا استعمال
+    </h3>
+
+    <p>
+      اکاؤنٹ بناتے وقت فراہم کیا گیا نام
+      اور موبائل نمبر کسٹمر اکاؤنٹ اور
+      آرڈر کی شناخت کے لیے استعمال کیا جاتا ہے۔
+    </p>
+
+
+    <h3>
+      PIN
+    </h3>
+
+    <p>
+      کسٹمر کا PIN محفوظ طریقے سے سسٹم
+      میں محفوظ کیا جاتا ہے اور عام طور پر
+      دوسرے صارفین کو ظاہر نہیں کیا جاتا۔
+    </p>
+
+
+    <h3>
+      آرڈر کا ریکارڈ
+    </h3>
+
+    <p>
+      آرڈر اور Tracking Number کو کاروباری
+      حساب اور آرڈر کی صورتحال معلوم کرنے
+      کے لیے محفوظ کیا جاتا ہے۔
+    </p>
+
+
+    <h3>
+      سیکیورٹی
+    </h3>
+
+    <p>
+      کسٹمر سیشن اور سرور سائیڈ ڈیٹا بیس
+      کے ذریعے رسائی کو محدود کرنے کے
+      لیے حفاظتی اقدامات استعمال کیے گئے ہیں۔
+    </p>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     TERMS
+========================= -->
+
+<section id="terms" class="section exchange-section">
+
+<div class="section-inner">
+
+  <div class="section-heading">
+
+    <div class="small">
+      TERMS
+    </div>
+
+    <h2>
+      Terms & Conditions
+    </h2>
+
+  </div>
+
+
+  <div class="policy">
+
+    <h3>
+      1۔ ریٹ
+    </h3>
+
+    <p>
+      کسٹمر کو آرڈر کے وقت سسٹم میں
+      موجودہ ریٹ دکھایا جاتا ہے۔
+    </p>
+
+
+    <h3>
+      2۔ آرڈر
+    </h3>
+
+    <p>
+      آرڈر جمع ہونے کے بعد اسے سسٹم میں
+      محفوظ کیا جاتا ہے اور Tracking Number
+      کے ذریعے اس کی صورتحال معلوم کی جا سکتی ہے۔
+    </p>
+
+
+    <h3>
+      3۔ حساب
+    </h3>
+
+    <p>
+      پاکستانی روپے کا حساب سعودی ریال
+      کی رقم کو مقررہ ریٹ سے ضرب دے کر
+      خودکار طور پر کیا جاتا ہے۔
+    </p>
+
+
+    <h3>
+      4۔ کسٹمر کی ذمہ داری
+    </h3>
+
+    <p>
+      کسٹمر کو اپنا موبائل نمبر، PIN اور
+      Tracking Number محفوظ رکھنا چاہیے۔
+    </p>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+  <strong>
+    Abo Safwan Currency
+  </strong>
+
+  <p>
+    Saudi Riyal Exchange Service
+  </p>
+
+  <p>
+    © 2026 Abo Safwan Currency — All Rights Reserved.
+  </p>
+
+</footer>
+
+
+<script>
+
+/* ==========================================
+   SUPABASE
+========================================== */
+
+const SUPABASE_URL =
+"https://fcrgyjxdmcbqxqizuoto.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_Uunl1_GNG6s1hnWiEyjFmw_nQELLr89";
+
+
+const SESSION_KEY =
+"abo_safwan_currency_session";
+
+
+let currentCustomer = null;
+let currentRate = 0;
+
+
+/* ==========================================
+   SUPABASE RPC
+========================================== */
+
+async function rpc(functionName, body={}){
+
+  const response =
+    await fetch(
+      SUPABASE_URL +
+      "/rest/v1/rpc/" +
+      functionName,
+      {
+        method:"POST",
+
+        headers:{
+          "Content-Type":
+            "application/json",
+
+          "apikey":
+            SUPABASE_KEY,
+
+          "Authorization":
+            "Bearer " +
+            SUPABASE_KEY
+        },
+
+        body:
+          JSON.stringify(body)
+      }
+    );
+
+
+  const text =
+    await response.text();
+
+
+  let data = null;
+
+
+  try{
+    data =
+      text
+      ? JSON.parse(text)
+      : null;
+  }
+  catch{
+    data = text;
+  }
+
+
+  if(!response.ok){
+
+    let message =
+      "سرور سے رابطہ نہیں ہوسکا۔";
+
+
+    if(data && typeof data === "object"){
+
+      message =
+        data.message ||
+        data.error_description ||
+        data.details ||
+        data.hint ||
+        data.error ||
+        message;
+
+    }
+
+
+    throw new Error(message);
+  }
+
+
+  return data;
+}
+
+
+/* ==========================================
+   NAVIGATION
+========================================== */
+
+function go(id){
+
+  const element =
+    document.getElementById(id);
+
+
+  if(element){
+
+    element.scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+
+  }
+
+
+  document
+    .getElementById("nav")
+    .classList.remove("show");
+
+}
+
+
+function toggleMenu(){
+
+  document
+    .getElementById("nav")
+    .classList.toggle("show");
+
+}
+
+
+/* ==========================================
+   MESSAGE
+========================================== */
+
+function message(id,text,type){
+
+  const box =
+    document.getElementById(id);
+
+
+  box.textContent = text;
+
+  box.className =
+    "message " +
+    type;
+
+}
+
+
+/* ==========================================
+   REGISTER
+========================================== */
+
+function showRegister(){
+
+  document
+    .getElementById("loginBox")
+    .classList.add("hidden");
+
+  document
+    .getElementById("registerBox")
+    .classList.remove("hidden");
+
+}
+
+
+function showLogin(){
+
+  document
+    .getElementById("registerBox")
+    .classList.add("hidden");
+
+  document
+    .getElementById("loginBox")
+    .classList.remove("hidden");
+
+}
+
+
+async function registerCustomer(){
+
+  const name =
+    document
+      .getElementById("registerName")
+      .value
+      .trim();
+
+
+  const mobile =
+    document
+      .getElementById("registerMobile")
+      .value
+      .trim();
+
+
+  const pin =
+    document
+      .getElementById("registerPin")
+      .value
+      .trim();
+
+
+  const confirm =
+    document
+      .getElementById("registerPinConfirm")
+      .value
+      .trim();
+
+
+  if(!name){
+
+    message(
+      "registerMessage",
+      "نام درج کریں۔",
+      "error"
+    );
+
+    return;
+  }
+
+
+  if(!mobile){
+
+    message(
+      "registerMessage",
+      "موبائل نمبر درج کریں۔",
+      "error"
+    );
+
+    return;
+  }
+
+
+  if(!/^[0-9]{4}$/.test(pin)){
+
+    message(
+      "registerMessage",
+      "PIN صرف 4 ہندسوں کا ہونا چاہیے۔",
+      "error"
+    );
+
+    return;
+  }
+
+
+  if(pin !== confirm){
+
+    message(
+      "registerMessage",
+      "دونوں PIN ایک جیسے نہیں ہیں۔",
+      "error"
+    );
+
+    return;
+  }
+
+
+  try{
+
+    const result =
+      await rpc(
+        "create_customer_account",
+        {
+          p_name:name,
+          p_mobile:mobile,
+          p_pin:pin
+        }
+      );
+
+
+    if(
+      result &&
+      result.success === false
+    ){
+
+      message(
+        "registerMessage",
+        result.message ||
+        "اکاؤنٹ نہیں بنا۔",
+        "error"
+      );
+
+      return;
+    }
+
+
+    message(
+      "registerMessage",
+      "اکاؤنٹ کامیابی سے بن گیا۔ اب لاگ اِن کریں۔",
+      "success"
+    );
+
+
+    setTimeout(
+      function(){
+
+        document
+          .getElementById("loginMobile")
+          .value = mobile;
+
+        showLogin();
+
+      },
+      1000
+    );
+
+  }
+  catch(error){
+
+    message(
+      "registerMessage",
+      error.message,
+      "error"
+    );
+
+  }
+
+}
+
+
+/* ==========================================
+   LOGIN
+========================================== */
+
+async function loginCustomer(){
+
+  const mobile =
+    document
+      .getElementById("loginMobile")
+      .value
+      .trim();
+
+
+  const pin =
+    document
+      .getElementById("loginPin")
+      .value
+      .trim();
+
+
+  if(!mobile){
+
+    message(
+      "loginMessage",
+      "موبائل نمبر درج کریں۔",
+      "error"
+    );
+
+    return;
+  }
+
+
+  if(!/^[0-9]{4}$/.test(pin)){
+
+    message(
+      "loginMessage",
+      "PIN 4 ہندسوں کا ہونا چاہیے۔",
+      "error"
+    );
+
+    return;
+  }
+
+
+  try{
+
+    const result =
+      await rpc(
+        "customer_login",
+        {
+          p_mobile:mobile,
+          p_pin:pin
+        }
+      );
+
+
+    if(
+      !result ||
+      result.success === false
+    ){
+
+      message(
+        "loginMessage",
+        result?.message ||
+        "موبائل نمبر یا PIN غلط ہے۔",
+        "error"
+      );
+
+      return;
+    }
+
+
+    currentCustomer =
+      result;
+
+
+    localStorage.setItem(
+      SESSION_KEY,
+      JSON.stringify(result)
+    );
+
+
+    showDashboard();
+
+  }
+  catch(error){
+
+    message(
+      "loginMessage",
+      error.message,
+      "error"
+    );
+
+  }
+
+}
+
+
+/* ==========================================
+   DASHBOARD
+========================================== */
+
+async function showDashboard(){
+
+  document
+    .getElementById("loginWrapper")
+    .classList.add("hidden");
+
+
+  document
+    .getElementById("dashboard")
+    .classList.remove("hidden");
+
+
+  document
+    .getElementById("customerName")
+    .textContent =
+      currentCustomer.name || "";
+
+
+  document
+    .getElementById("customerMobile")
+    .textContent =
+      currentCustomer.mobile || "";
+
+
+  await loadRate();
+
+}
+
+
+async function loadRate(){
+
+  try{
+
+    const result =
+      await rpc(
+        "get_customer_current_rate",
+        {}
+      );
+
+
+    let rate = 0;
+
+
+    if(Array.isArray(result)){
+
+      rate =
+        Number(
+          result[0]?.rate || 0
+        );
+
+    }
+    else{
+
+      rate =
+        Number(
+          result?.rate || 0
+        );
+
+    }
+
+
+    currentRate = rate;
+
+
+    const formatted =
+      rate.toLocaleString(
+        "en-US"
+      );
+
+
+    document
+      .getElementById("heroRate")
+      .textContent =
+        formatted;
+
+
+    document
+      .getElementById("exchangeRate")
+      .textContent =
+        formatted;
+
+
+    document
+      .getElementById("customerRate")
+      .textContent =
+        formatted;
+
+
+    publicCalculate();
+    calculateOrder();
+
+  }
+  catch(error){
+
+    document
+      .getElementById("heroRate")
+      .textContent =
+        "—";
+
+    document
+      .getElementById("exchangeRate")
+      .textContent =
+        "—";
+
+  }
+
+}
+
+
+/* ==========================================
+   PUBLIC CALCULATOR
+========================================== */
+
+function publicCalculate(){
+
+  const amount =
+    Number(
+      document
+        .getElementById("publicAmount")
+        .value
+    );
+
+
+  const total =
+    amount &&
+    currentRate
+      ? amount * currentRate
+      : 0;
+
+
+  document
+    .getElementById("publicTotal")
+    .textContent =
+      total.toLocaleString(
+        "en-US",
+        {
+          maximumFractionDigits:2
+        }
+      ) +
+      " PKR";
+
+}
+
+
+/* ==========================================
+   ORDER CALCULATOR
+========================================== */
+
+function calculateOrder(){
+
+  const amount =
+    Number(
+      document
+        .getElementById("sarAmount")
+        .value
+    );
+
+
+  const total =
+    amount &&
+    currentRate
+      ? amount * currentRate
+      : 0;
+
+
+  document
+    .getElementById("orderTotal")
+    .textContent =
+      total.toLocaleString(
+        "en-US",
+        {
+          maximumFractionDigits:2
+        }
+      ) +
+      " PKR";
+
+}
+
+
+/* ==========================================
+   CREATE ORDER
+========================================== */
+
+async function createOrder(){
+
+  const receiver =
+    document
+      .getElementById("receiver")
+      .value
+      .trim();
+
+
+  const amount =
+    Number(
+      document
+        .getElementById("sarAmount")
+        .value
+    );
+
+
+  if(
+    !currentCustomer ||
+    !currentCustomer.session_token
+  ){
+
+    message(
+      "orderMessage",
+      "براہ کرم دوبارہ لاگ اِن کریں۔",
+      "error"
+    );
+
+    return;
+  }
+
+
+  if(!receiver){
+
+    message(
+      "orderMessage",
+      "وصول کنندہ کا نام درج کریں۔",
+      "error"
+    );
+
+    return;
+  }
+
+
+  if(!amount || amount <= 0){
+
+    message(
+      "orderMessage",
+      "سعودی ریال کی درست رقم درج کریں۔",
+      "error"
+    );
+
+    return;
+  }
+
+
+  try{
+
+    const result =
+      await rpc(
+        "create_secure_customer_currency_order",
+        {
+          p_session_token:
+            currentCustomer.session_token,
+
+          p_receiver:
+            receiver,
+
+          p_amount:
+            amount
+        }
+      );
+
+
+    const record =
+      Array.isArray(result)
+        ? result[0]
+        : result;
+
+
+    if(!record){
+
+      throw new Error(
+        "آرڈر محفوظ نہیں ہوا۔"
+      );
+
+    }
+
+
+    message(
+      "orderMessage",
+      "آرڈر کامیابی سے جمع ہوگیا۔",
+      "success"
+    );
+
+
+    document
+      .getElementById("receiver")
+      .value = "";
+
+
+    document
+      .getElementById("sarAmount")
+      .value = "";
+
+
+    calculateOrder();
+
+
+    if(record.tracking_number){
+
+      const box =
+        document
+          .getElementById("trackingResult");
+
+
+      box.classList.remove("hidden");
+
+
+      box.innerHTML = `
+
+        <h3 style="color:#075b50;">
+          آرڈر کامیاب ہوگیا
+        </h3>
+
+        <div class="tracking-number">
+          ${safe(record.tracking_number)}
+        </div>
+
+        <p style="text-align:center;">
+          اس Tracking Number کو محفوظ کرلیں۔
+        </p>
+
+      `;
+
+    }
+
+  }
+  catch(error){
+
+    message(
+      "orderMessage",
+      error.message,
+      "error"
+    );
+
+  }
+
+}
+
+
+/* ==========================================
+   TRACKING
+========================================== */
+
+async function searchTracking(){
+
+  const tracking =
+    document
+      .getElementById("trackingInput")
+      .value
+      .trim();
+
+
+  const box =
+    document
+      .getElementById("trackingResult");
+
+
+  if(!tracking){
+
+    box.classList.remove("hidden");
+
+    box.textContent =
+      "Tracking Number درج کریں۔";
+
+    return;
+  }
+
+
+  if(
+    !currentCustomer ||
+    !currentCustomer.session_token
+  ){
+
+    go("login");
+
+    return;
+  }
+
+
+  try{
+
+    const result =
+      await rpc(
+        "search_secure_customer_tracking",
+        {
+          p_session_token:
+            currentCustomer.session_token,
+
+          p_tracking_number:
+            tracking
+        }
+      );
+
+
+    const record =
+      Array.isArray(result)
+        ? result[0]
+        : result;
+
+
+    box.classList.remove("hidden");
+
+
+    if(!record){
+
+      box.textContent =
+        "یہ Tracking Number نہیں ملا۔";
+
+      return;
+    }
+
+
+    const status =
+      record.status === "approved"
+        ? `
+          <span class="status approved">
+            منظور شدہ
+          </span>
+        `
+        : `
+          <span class="status pending">
+            زیرِ کارروائی
+          </span>
+        `;
+
+
+    box.innerHTML = `
+
+      <h3 style="color:#075b50;">
+        آرڈر کی معلومات
+      </h3>
+
+      <div class="tracking-number">
+        ${safe(record.tracking_number)}
+      </div>
+
+      <p>
+        <b>وصول کنندہ:</b>
+        ${safe(record.receiver)}
+      </p>
+
+      <p>
+        <b>سعودی ریال:</b>
+        ${Number(record.amount || 0).toLocaleString("en-US")}
+      </p>
+
+      <p>
+        <b>ریٹ:</b>
+        ${Number(record.rate || 0).toLocaleString("en-US")}
+      </p>
+
+      <p>
+        <b>کل رقم:</b>
+        ${Number(record.total || 0).toLocaleString("en-US")}
+        PKR
+      </p>
+
+      <p style="margin-top:10px;">
+        <b>حالت:</b>
+        ${status}
+      </p>
+
+    `;
+
+  }
+  catch(error){
+
+    box.classList.remove("hidden");
+
+    box.textContent =
+      error.message ||
+      "Tracking تلاش نہیں ہوسکا۔";
+
+  }
+
+}
+
+
+/* ==========================================
+   LOGOUT
+========================================== */
+
+async function logoutCustomer(){
+
+  try{
+
+    if(
+      currentCustomer &&
+      currentCustomer.session_token
+    ){
+
+      await rpc(
+        "customer_logout",
+        {
+          p_session_token:
+            currentCustomer.session_token
+        }
+      );
+
+    }
+
+  }
+  catch(error){
+    console.log(error);
+  }
+
+
+  currentCustomer = null;
+
+  localStorage.removeItem(
+    SESSION_KEY
+  );
+
+
+  document
+    .getElementById("dashboard")
+    .classList.add("hidden");
+
+
+  document
+    .getElementById("loginWrapper")
+    .classList.remove("hidden");
+
+
+  document
+    .getElementById("loginPin")
+    .value = "";
+
+
+  go("login");
+
+}
+
+
+/* ==========================================
+   RESTORE SESSION
+========================================== */
+
+async function restoreSession(){
+
+  try{
+
+    const saved =
+      localStorage.getItem(
+        SESSION_KEY
+      );
+
+
+    if(!saved)
+      return;
+
+
+    const data =
+      JSON.parse(saved);
+
+
+    if(
+      !data ||
+      !data.session_token
+    ){
+
+      localStorage.removeItem(
+        SESSION_KEY
+      );
+
+      return;
+    }
+
+
+    currentCustomer =
+      data;
+
+
+    await showDashboard();
+
+  }
+  catch(error){
+
+    localStorage.removeItem(
+      SESSION_KEY
+    );
+
+  }
+
+}
+
+
+/* ==========================================
+   SAFE HTML
+========================================== */
+
+function safe(value){
+
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* ==========================================
+   START
+========================================== */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  async function(){
+
+    await loadRate();
+
+    await restoreSession();
+
+  }
+);
+
+</script>
+
+</body>
+</html>
