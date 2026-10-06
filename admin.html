@@ -1,0 +1,2191 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Abo Safwan Currency - Admin</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,"Noto Nastaliq Urdu",sans-serif;
+    background:#f3f6f8;
+    color:#17212b;
+}
+
+header{
+    background:#063b35;
+    color:#fff;
+    padding:18px;
+    text-align:center;
+}
+
+header h1{
+    margin:0;
+    font-size:25px;
+}
+
+header p{
+    margin:6px 0 0;
+}
+
+.container{
+    max-width:1450px;
+    margin:auto;
+    padding:15px;
+}
+
+.card{
+    background:#fff;
+    border-radius:12px;
+    padding:18px;
+    margin-bottom:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:12px;
+}
+
+input,select,button{
+    width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+button{
+    border:0;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.btn{
+    background:#063b35;
+    color:#fff;
+}
+
+.green{
+    background:#16833b;
+    color:#fff;
+}
+
+.blue{
+    background:#1769aa;
+    color:#fff;
+}
+
+.gold{
+    background:#b8860b;
+    color:#fff;
+}
+
+.red{
+    background:#c62828;
+    color:#fff;
+}
+
+.gray{
+    background:#666;
+    color:#fff;
+}
+
+.stat{
+    background:#f7fafb;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:15px;
+    text-align:center;
+}
+
+.stat strong{
+    display:block;
+    font-size:22px;
+    margin-top:5px;
+}
+
+.actions{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:10px;
+}
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1300px;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:8px;
+    text-align:center;
+    white-space:nowrap;
+}
+
+th{
+    background:#063b35;
+    color:white;
+}
+
+tr:nth-child(even){
+    background:#fafafa;
+}
+
+.phone{
+    direction:ltr;
+    unicode-bidi:embed;
+    display:inline-block;
+    white-space:nowrap;
+}
+
+.small-input{
+    width:100px;
+    direction:ltr;
+    text-align:center;
+}
+
+.whatsapp{
+    display:inline-block;
+    background:#25D366;
+    color:white;
+    padding:7px 10px;
+    border-radius:6px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.update-btn{
+    background:#1769aa;
+    color:white;
+    padding:7px 10px;
+}
+
+.print-btn{
+    background:#444;
+    color:white;
+    padding:7px 10px;
+}
+
+.pending{
+    color:#b36b00;
+    font-weight:bold;
+}
+
+.approved{
+    color:#16833b;
+    font-weight:bold;
+}
+
+.login-box{
+    max-width:430px;
+    margin:70px auto;
+}
+
+.field{
+    margin-bottom:12px;
+}
+
+.hidden{
+    display:none !important;
+}
+
+.error{
+    background:#ffe4e4;
+    color:#a00000;
+    padding:10px;
+    border-radius:8px;
+    margin-bottom:12px;
+}
+
+.success{
+    background:#e4f8e9;
+    color:#146c2e;
+    padding:10px;
+    border-radius:8px;
+    margin-bottom:12px;
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+    z-index:9999;
+}
+
+.modal-box{
+    background:#fff;
+    width:100%;
+    max-width:600px;
+    max-height:90vh;
+    overflow:auto;
+    padding:20px;
+    border-radius:12px;
+}
+
+.form-row{
+    margin-bottom:12px;
+}
+
+.form-row label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+
+/* =================================================
+   PRINT
+================================================= */
+
+#printArea{
+    display:none;
+}
+
+@media print{
+
+    body{
+        background:#fff !important;
+        margin:0 !important;
+        padding:0 !important;
+    }
+
+    body > *{
+        display:none !important;
+    }
+
+    #printArea{
+        display:block !important;
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+        background:#fff;
+    }
+
+    @page{
+        size:A4;
+        margin:10mm;
+    }
+
+    .print-page{
+        width:100%;
+        direction:rtl;
+        font-family:Arial,sans-serif;
+    }
+
+    .print-title{
+        text-align:center;
+        margin-bottom:15px;
+        border-bottom:2px solid #000;
+        padding-bottom:8px;
+    }
+
+    .print-title h1{
+        margin:0 0 5px 0;
+        font-size:22px;
+    }
+
+    .print-title h2{
+        margin:0;
+        font-size:17px;
+    }
+
+    .print-table{
+        width:100%;
+        border-collapse:collapse;
+        font-size:11px;
+    }
+
+    .print-table th,
+    .print-table td{
+        border:1px solid #000;
+        padding:6px 4px;
+        text-align:center;
+        white-space:nowrap;
+    }
+
+    .print-table th{
+        background:#eee !important;
+        color:#000 !important;
+    }
+
+    .print-phone{
+        direction:ltr;
+        unicode-bidi:embed;
+        display:inline-block;
+    }
+
+    .print-total{
+        font-weight:bold;
+    }
+
+    .single-box{
+        border:1px solid #000;
+        padding:0;
+    }
+
+    .single-table{
+        width:100%;
+        border-collapse:collapse;
+        font-size:13px;
+    }
+
+    .single-table th,
+    .single-table td{
+        border:1px solid #000;
+        padding:9px;
+        text-align:right;
+    }
+
+    .single-table th{
+        width:35%;
+        background:#eee !important;
+        color:#000 !important;
+    }
+
+    .single-phone{
+        direction:ltr;
+        unicode-bidi:embed;
+        display:inline-block;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= LOGIN ================= -->
+
+<div id="loginPage">
+
+    <div class="login-box card">
+
+        <h2 style="text-align:center">
+            🔐 Admin Login
+        </h2>
+
+        <p style="text-align:center">
+            Abo Safwan Currency
+        </p>
+
+        <div id="loginError" class="error hidden"></div>
+
+        <div class="field">
+            <label>Admin Email</label>
+            <input
+                type="email"
+                id="adminEmail"
+                placeholder="Admin Email">
+        </div>
+
+        <div class="field">
+            <label>Password</label>
+            <input
+                type="password"
+                id="adminPassword"
+                placeholder="Password">
+        </div>
+
+        <button class="btn" onclick="adminLogin()">
+            🔐 Login
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= ADMIN ================= -->
+
+<div id="adminPage" class="hidden">
+
+<header>
+
+    <h1>Abo Safwan Currency</h1>
+
+    <p>
+        Saudi Riyal Exchange Service — Admin Panel
+    </p>
+
+</header>
+
+<div class="container">
+
+
+<!-- RATE -->
+
+<div class="card">
+
+    <h2>💱 موجودہ ریٹ</h2>
+
+    <div class="grid">
+
+        <div>
+            <label>1 سعودی ریال =</label>
+
+            <input
+                type="number"
+                id="currentRate"
+                step="0.01"
+                min="0">
+        </div>
+
+        <div style="display:flex;align-items:end">
+
+            <button
+                class="green"
+                onclick="updateRate()">
+                💾 ریٹ محفوظ کریں
+            </button>
+
+        </div>
+
+    </div>
+
+    <div id="rateMessage" class="success hidden"></div>
+
+</div>
+
+
+<!-- STATS -->
+
+<div class="card">
+
+    <h2>📊 حساب کا خلاصہ</h2>
+
+    <div class="grid">
+
+        <div class="stat">
+            کل اکاؤنٹس
+            <strong id="statAccounts">0</strong>
+        </div>
+
+        <div class="stat">
+            کل ریال
+            <strong id="statSar">0</strong>
+        </div>
+
+        <div class="stat">
+            کل رقم
+            <strong id="statTotal">0</strong>
+        </div>
+
+        <div class="stat">
+            کل وصول
+            <strong id="statReceived">0</strong>
+        </div>
+
+        <div class="stat">
+            کل بقایا
+            <strong id="statDue">0</strong>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- SEARCH -->
+
+<div class="card">
+
+    <h2>🔎 کسٹمر تلاش کریں</h2>
+
+    <div class="grid">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="نام یا موبائل نمبر">
+
+        <button
+            class="btn"
+            onclick="loadRecords(false)">
+            🔎 تلاش
+        </button>
+
+        <button
+            class="gold"
+            onclick="loadRecords(true)">
+            🔄 تمام ریکارڈ
+        </button>
+
+    </div>
+
+    <br>
+
+    <div class="actions">
+
+        <button
+            class="blue"
+            onclick="printAllAccounts()">
+            🖨️ تمام حساب A4 پرنٹ
+        </button>
+
+        <button
+            class="red"
+            onclick="adminLogout()">
+            🚪 Logout
+        </button>
+
+    </div>
+
+</div>
+
+
+<div id="mainMessage" class="success hidden"></div>
+
+
+<!-- RECORDS -->
+
+<div class="card">
+
+    <h2>📒 کسٹمر اکاؤنٹس</h2>
+
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>#</th>
+                    <th>کسٹمر</th>
+                    <th>موبائل</th>
+                    <th>وصول کنندہ</th>
+                    <th>ریال</th>
+                    <th>ریٹ</th>
+                    <th>کل رقم</th>
+                    <th>وصول</th>
+                    <th>بقایا</th>
+                    <th>حالت</th>
+                    <th>تاریخ</th>
+                    <th>WhatsApp</th>
+                    <th>Update</th>
+                    <th>Print</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="recordsBody"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- ================= UPDATE MODAL ================= -->
+
+<div id="updateModal" class="modal">
+
+<div class="modal-box">
+
+<h2>✏️ اکاؤنٹ اپڈیٹ</h2>
+
+<input type="hidden" id="editId">
+
+<div class="form-row">
+<label>کسٹمر نام</label>
+<input id="editCustomer">
+</div>
+
+<div class="form-row">
+<label>موبائل نمبر</label>
+<input id="editMobile">
+</div>
+
+<div class="form-row">
+<label>وصول کنندہ</label>
+<input id="editReceiver">
+</div>
+
+<div class="form-row">
+<label>ریال کی رقم</label>
+<input
+    type="number"
+    id="editAmount"
+    step="0.01"
+    oninput="calculateEdit()">
+</div>
+
+<div class="form-row">
+<label>ریٹ</label>
+<input
+    type="number"
+    id="editRate"
+    step="0.01"
+    oninput="calculateEdit()">
+</div>
+
+<div class="form-row">
+<label>کل رقم</label>
+<input
+    type="number"
+    id="editTotal"
+    readonly>
+</div>
+
+<div class="form-row">
+<label>وصول</label>
+<input
+    type="number"
+    id="editReceived"
+    step="0.01"
+    min="0"
+    oninput="calculateEdit()">
+</div>
+
+<div class="form-row">
+<label>بقایا</label>
+<input
+    type="number"
+    id="editDue"
+    readonly>
+</div>
+
+<div class="form-row">
+<label>حالت</label>
+
+<select id="editStatus">
+
+<option value="pending">
+زیرِ کارروائی
+</option>
+
+<option value="approved">
+منظور شدہ
+</option>
+
+</select>
+
+</div>
+
+<div class="actions">
+
+<button
+    class="green"
+    onclick="saveUpdate()">
+    💾 محفوظ کریں
+</button>
+
+<button
+    class="gray"
+    onclick="closeUpdate()">
+    ✖ بند کریں
+</button>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- ================= PRINT AREA ================= -->
+
+<div id="printArea"></div>
+
+
+<script>
+
+/* =================================================
+   SUPABASE
+================================================= */
+
+const SUPABASE_URL =
+"https://fcrgyjxdmcbqxqizuoto.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_Uunl1_GNG6s1hnWiEyjFmw_nQELLr89";
+
+const ADMIN_UID =
+"d4b5b48a-d8d2-4b84-b21e-f25ffa1db734";
+
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+let allRecords = [];
+
+
+/* =================================================
+   START
+================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function(){
+
+        const {
+            data
+        } =
+        await supabaseClient.auth.getSession();
+
+        if(
+            data &&
+            data.session &&
+            data.session.user &&
+            data.session.user.id === ADMIN_UID
+        ){
+
+            showAdmin();
+
+        }
+
+    }
+);
+
+
+/* =================================================
+   LOGIN
+================================================= */
+
+async function adminLogin(){
+
+    const email =
+        document.getElementById(
+            "adminEmail"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "adminPassword"
+        ).value;
+
+    const errorBox =
+        document.getElementById(
+            "loginError"
+        );
+
+    errorBox.classList.add("hidden");
+
+    if(!email || !password){
+
+        errorBox.textContent =
+            "Email اور Password درج کریں۔";
+
+        errorBox.classList.remove("hidden");
+
+        return;
+    }
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient.auth.signInWithPassword({
+
+        email:email,
+
+        password:password
+
+    });
+
+    if(error){
+
+        errorBox.textContent =
+            error.message;
+
+        errorBox.classList.remove("hidden");
+
+        return;
+    }
+
+    if(
+        !data.user ||
+        data.user.id !== ADMIN_UID
+    ){
+
+        await supabaseClient.auth.signOut();
+
+        errorBox.textContent =
+            "یہ Admin اکاؤنٹ نہیں ہے۔";
+
+        errorBox.classList.remove("hidden");
+
+        return;
+    }
+
+    showAdmin();
+
+}
+
+
+/* =================================================
+   SHOW ADMIN
+================================================= */
+
+async function showAdmin(){
+
+    document
+        .getElementById("loginPage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("adminPage")
+        .classList.remove("hidden");
+
+    await loadCurrentRate();
+
+    await loadRecords(true);
+
+}
+
+
+/* =================================================
+   LOGOUT
+================================================= */
+
+async function adminLogout(){
+
+    await supabaseClient.auth.signOut();
+
+    location.reload();
+
+}
+
+
+/* =================================================
+   RATE
+================================================= */
+
+async function loadCurrentRate(){
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+    .from("currency_rates")
+    .select("*")
+    .eq("currency_from","SAR")
+    .eq("currency_to","PKR")
+    .eq("is_active",true)
+    .order("created_at",{ascending:false})
+    .limit(1)
+    .maybeSingle();
+
+    if(error){
+
+        console.error(error);
+
+        return;
+    }
+
+    if(data){
+
+        document
+            .getElementById("currentRate")
+            .value =
+            Number(data.rate);
+
+    }
+
+}
+
+
+async function updateRate(){
+
+    const rate =
+        Number(
+            document
+            .getElementById("currentRate")
+            .value
+        );
+
+    if(rate <= 0){
+
+        alert("درست ریٹ درج کریں۔");
+
+        return;
+    }
+
+    const {
+        error
+    } =
+    await supabaseClient
+    .from("currency_rates")
+    .update({
+        is_active:false
+    })
+    .eq("currency_from","SAR")
+    .eq("currency_to","PKR")
+    .eq("is_active",true);
+
+    if(error){
+
+        alert(error.message);
+
+        return;
+    }
+
+    const {
+        data:userData
+    } =
+    await supabaseClient.auth.getUser();
+
+    const {
+        error:insertError
+    } =
+    await supabaseClient
+    .from("currency_rates")
+    .insert({
+
+        rate:rate,
+
+        currency_from:"SAR",
+
+        currency_to:"PKR",
+
+        is_active:true,
+
+        created_by:userData.user.id
+
+    });
+
+    if(insertError){
+
+        alert(insertError.message);
+
+        return;
+    }
+
+    showRateMessage(
+        "ریٹ کامیابی سے محفوظ ہوگیا۔"
+    );
+
+    await loadRecords(true);
+
+}
+
+
+function showRateMessage(message){
+
+    const box =
+        document.getElementById(
+            "rateMessage"
+        );
+
+    box.textContent = message;
+
+    box.classList.remove("hidden");
+
+    setTimeout(
+        ()=>box.classList.add("hidden"),
+        3000
+    );
+
+}
+
+
+/* =================================================
+   RECORDS
+================================================= */
+
+async function loadRecords(showAll=true){
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+    .from("currency_records")
+    .select("*")
+    .order("record_date",{ascending:false});
+
+    if(error){
+
+        alert(error.message);
+
+        return;
+    }
+
+    let records = data || [];
+
+    const search =
+        document
+        .getElementById("searchInput")
+        .value
+        .trim()
+        .toLowerCase();
+
+    if(!showAll && search){
+
+        records =
+        records.filter(function(r){
+
+            const name =
+                String(r.customer || "")
+                .toLowerCase();
+
+            const mobile =
+                String(r.mobile || "")
+                .toLowerCase();
+
+            return(
+                name.includes(search) ||
+                mobile.includes(search)
+            );
+
+        });
+
+    }
+
+    allRecords = records;
+
+    renderRecords(records);
+
+    updateStats(records);
+
+}
+
+
+/* =================================================
+   RENDER
+================================================= */
+
+function renderRecords(records){
+
+    const body =
+        document.getElementById(
+            "recordsBody"
+        );
+
+    body.innerHTML = "";
+
+    if(!records.length){
+
+        body.innerHTML = `
+        <tr>
+            <td colspan="14">
+                کوئی ریکارڈ نہیں ملا۔
+            </td>
+        </tr>
+        `;
+
+        return;
+    }
+
+    records.forEach(function(r,index){
+
+        const amount =
+            Number(r.amount || 0);
+
+        const rate =
+            Number(r.rate || 0);
+
+        const total =
+            Number(
+                r.total ??
+                amount * rate
+            );
+
+        const received =
+            Number(
+                r.total_received || 0
+            );
+
+        const due =
+            Math.max(
+                total - received,
+                0
+            );
+
+        const mobile =
+            formatPhoneDisplay(
+                r.mobile
+            );
+
+        const wa =
+            formatPhoneForWhatsApp(
+                r.mobile
+            );
+
+        const status =
+            r.status === "approved"
+            ? "✅ منظور شدہ"
+            : "⏳ زیرِ کارروائی";
+
+        const cls =
+            r.status === "approved"
+            ? "approved"
+            : "pending";
+
+        const tr =
+        document.createElement("tr");
+
+        tr.innerHTML = `
+
+        <td>${index+1}</td>
+
+        <td>
+            ${escapeHtml(r.customer || "")}
+        </td>
+
+        <td>
+            <span class="phone">
+                ${escapeHtml(mobile)}
+            </span>
+        </td>
+
+        <td>
+            ${escapeHtml(r.receiver || "")}
+        </td>
+
+        <td>
+            ${formatNumber(amount)}
+        </td>
+
+        <td>
+            ${formatNumber(rate)}
+        </td>
+
+        <td>
+            ${formatNumber(total)}
+        </td>
+
+        <td>
+
+            <input
+                class="small-input"
+                type="number"
+                min="0"
+                value="${received}"
+                oninput="
+                liveDue(
+                    this,
+                    ${total},
+                    '${r.id}'
+                )">
+
+        </td>
+
+        <td id="due-${r.id}">
+            ${formatNumber(due)}
+        </td>
+
+        <td class="${cls}">
+            ${status}
+        </td>
+
+        <td>
+            ${formatDate(r.record_date)}
+        </td>
+
+        <td>
+
+            ${
+                wa
+                ?
+                `<a
+                    class="whatsapp"
+                    target="_blank"
+                    href="https://wa.me/${wa}">
+                    WhatsApp
+                </a>`
+                :
+                "-"
+            }
+
+        </td>
+
+        <td>
+
+            <button
+                class="update-btn"
+                onclick="openUpdate('${r.id}')">
+                ✏️ Update
+            </button>
+
+        </td>
+
+        <td>
+
+            <button
+                class="print-btn"
+                onclick="printSingle('${r.id}')">
+                🖨️ Print
+            </button>
+
+        </td>
+
+        `;
+
+        body.appendChild(tr);
+
+    });
+
+}
+
+
+/* =================================================
+   LIVE DUE
+================================================= */
+
+function liveDue(input,total,id){
+
+    let received =
+        Number(input.value || 0);
+
+    if(received < 0){
+
+        received = 0;
+
+        input.value = 0;
+
+    }
+
+    const due =
+        Math.max(
+            Number(total) - received,
+            0
+        );
+
+    const cell =
+        document.getElementById(
+            "due-"+id
+        );
+
+    if(cell){
+
+        cell.textContent =
+            formatNumber(due);
+
+    }
+
+}
+
+
+/* =================================================
+   STATS
+================================================= */
+
+function updateStats(records){
+
+    let sar=0;
+    let total=0;
+    let received=0;
+    let due=0;
+
+    records.forEach(function(r){
+
+        const amount =
+            Number(r.amount || 0);
+
+        const rate =
+            Number(r.rate || 0);
+
+        const t =
+            Number(
+                r.total ??
+                amount*rate
+            );
+
+        const rec =
+            Number(
+                r.total_received || 0
+            );
+
+        sar += amount;
+        total += t;
+        received += rec;
+        due += Math.max(t-rec,0);
+
+    });
+
+    document.getElementById(
+        "statAccounts"
+    ).textContent =
+        records.length;
+
+    document.getElementById(
+        "statSar"
+    ).textContent =
+        formatNumber(sar);
+
+    document.getElementById(
+        "statTotal"
+    ).textContent =
+        formatNumber(total);
+
+    document.getElementById(
+        "statReceived"
+    ).textContent =
+        formatNumber(received);
+
+    document.getElementById(
+        "statDue"
+    ).textContent =
+        formatNumber(due);
+
+}
+
+
+/* =================================================
+   UPDATE
+================================================= */
+
+function openUpdate(id){
+
+    const r =
+        allRecords.find(
+            x=>x.id===id
+        );
+
+    if(!r){
+
+        alert("ریکارڈ نہیں ملا۔");
+
+        return;
+    }
+
+    document.getElementById(
+        "editId"
+    ).value = r.id;
+
+    document.getElementById(
+        "editCustomer"
+    ).value = r.customer || "";
+
+    document.getElementById(
+        "editMobile"
+    ).value = r.mobile || "";
+
+    document.getElementById(
+        "editReceiver"
+    ).value = r.receiver || "";
+
+    document.getElementById(
+        "editAmount"
+    ).value =
+        Number(r.amount || 0);
+
+    document.getElementById(
+        "editRate"
+    ).value =
+        Number(r.rate || 0);
+
+    document.getElementById(
+        "editReceived"
+    ).value =
+        Number(r.total_received || 0);
+
+    document.getElementById(
+        "editStatus"
+    ).value =
+        r.status || "pending";
+
+    calculateEdit();
+
+    document.getElementById(
+        "updateModal"
+    ).style.display =
+        "flex";
+
+}
+
+
+function closeUpdate(){
+
+    document.getElementById(
+        "updateModal"
+    ).style.display =
+        "none";
+
+}
+
+
+function calculateEdit(){
+
+    const amount =
+        Number(
+            document.getElementById(
+                "editAmount"
+            ).value || 0
+        );
+
+    const rate =
+        Number(
+            document.getElementById(
+                "editRate"
+            ).value || 0
+        );
+
+    const received =
+        Number(
+            document.getElementById(
+                "editReceived"
+            ).value || 0
+        );
+
+    const total =
+        amount * rate;
+
+    const due =
+        Math.max(
+            total-received,
+            0
+        );
+
+    document.getElementById(
+        "editTotal"
+    ).value =
+        total.toFixed(2);
+
+    document.getElementById(
+        "editDue"
+    ).value =
+        due.toFixed(2);
+
+}
+
+
+async function saveUpdate(){
+
+    const id =
+        document.getElementById(
+            "editId"
+        ).value;
+
+    const customer =
+        document.getElementById(
+            "editCustomer"
+        ).value.trim();
+
+    const mobile =
+        document.getElementById(
+            "editMobile"
+        ).value.trim();
+
+    const receiver =
+        document.getElementById(
+            "editReceiver"
+        ).value.trim();
+
+    const amount =
+        Number(
+            document.getElementById(
+                "editAmount"
+            ).value || 0
+        );
+
+    const rate =
+        Number(
+            document.getElementById(
+                "editRate"
+            ).value || 0
+        );
+
+    const received =
+        Number(
+            document.getElementById(
+                "editReceived"
+            ).value || 0
+        );
+
+    const status =
+        document.getElementById(
+            "editStatus"
+        ).value;
+
+    const total =
+        amount * rate;
+
+    const due =
+        Math.max(
+            total-received,
+            0
+        );
+
+    const {
+        error
+    } =
+    await supabaseClient
+    .from("currency_records")
+    .update({
+
+        customer:customer,
+
+        mobile:mobile,
+
+        receiver:receiver,
+
+        amount:amount,
+
+        rate:rate,
+
+        total:total,
+
+        total_received:received,
+
+        total_due:due,
+
+        status:status
+
+    })
+    .eq("id",id);
+
+    if(error){
+
+        alert(error.message);
+
+        return;
+    }
+
+    closeUpdate();
+
+    showMainMessage(
+        "اکاؤنٹ کامیابی سے اپڈیٹ ہوگیا۔"
+    );
+
+    await loadRecords(true);
+
+}
+
+
+/* =================================================
+   SINGLE PRINT
+   صرف حساب
+================================================= */
+
+function printSingle(id){
+
+    const r =
+        allRecords.find(
+            x=>x.id===id
+        );
+
+    if(!r){
+
+        alert("ریکارڈ نہیں ملا۔");
+
+        return;
+    }
+
+    const amount =
+        Number(r.amount || 0);
+
+    const rate =
+        Number(r.rate || 0);
+
+    const total =
+        Number(
+            r.total ??
+            amount*rate
+        );
+
+    const received =
+        Number(
+            r.total_received || 0
+        );
+
+    const due =
+        Math.max(
+            total-received,
+            0
+        );
+
+    const status =
+        r.status === "approved"
+        ? "منظور شدہ"
+        : "زیرِ کارروائی";
+
+    const phone =
+        formatPhoneDisplay(
+            r.mobile
+        );
+
+    document.getElementById(
+        "printArea"
+    ).innerHTML = `
+
+    <div class="print-page">
+
+        <div class="print-title">
+
+            <h1>
+                Abo Safwan Currency
+            </h1>
+
+            <h2>
+                کسٹمر حساب
+            </h2>
+
+        </div>
+
+        <table class="single-table">
+
+            <tr>
+                <th>کسٹمر نام</th>
+                <td>
+                    ${escapeHtml(r.customer || "")}
+                </td>
+            </tr>
+
+            <tr>
+                <th>موبائل نمبر</th>
+                <td>
+                    <span class="single-phone">
+                        ${escapeHtml(phone)}
+                    </span>
+                </td>
+            </tr>
+
+            <tr>
+                <th>وصول کنندہ</th>
+                <td>
+                    ${escapeHtml(r.receiver || "")}
+                </td>
+            </tr>
+
+            <tr>
+                <th>ریال</th>
+                <td>
+                    ${formatNumber(amount)}
+                </td>
+            </tr>
+
+            <tr>
+                <th>ریٹ</th>
+                <td>
+                    ${formatNumber(rate)}
+                </td>
+            </tr>
+
+            <tr>
+                <th>کل رقم</th>
+                <td>
+                    ${formatNumber(total)} روپے
+                </td>
+            </tr>
+
+            <tr>
+                <th>وصول</th>
+                <td>
+                    ${formatNumber(received)} روپے
+                </td>
+            </tr>
+
+            <tr>
+                <th>بقایا</th>
+                <td>
+                    ${formatNumber(due)} روپے
+                </td>
+            </tr>
+
+            <tr>
+                <th>حالت</th>
+                <td>
+                    ${status}
+                </td>
+            </tr>
+
+            <tr>
+                <th>تاریخ</th>
+                <td>
+                    ${formatDate(r.record_date)}
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+    `;
+
+    window.print();
+
+}
+
+
+/* =================================================
+   ALL ACCOUNTS PRINT
+   صرف حساب
+================================================= */
+
+async function printAllAccounts(){
+
+    /*
+       پہلے Supabase سے تازہ ترین
+       تمام حساب دوبارہ حاصل کریں
+    */
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+    .from("currency_records")
+    .select("*")
+    .order("record_date",{ascending:false});
+
+    if(error){
+
+        alert(error.message);
+
+        return;
+    }
+
+    const records = data || [];
+
+    if(!records.length){
+
+        alert(
+            "پرنٹ کرنے کے لیے کوئی حساب موجود نہیں۔"
+        );
+
+        return;
+    }
+
+    let sar = 0;
+    let total = 0;
+    let received = 0;
+    let due = 0;
+
+    let rows = "";
+
+    records.forEach(function(r,index){
+
+        const amount =
+            Number(r.amount || 0);
+
+        const rate =
+            Number(r.rate || 0);
+
+        const recordTotal =
+            Number(
+                r.total ??
+                amount*rate
+            );
+
+        const recordReceived =
+            Number(
+                r.total_received || 0
+            );
+
+        const recordDue =
+            Math.max(
+                recordTotal-recordReceived,
+                0
+            );
+
+        sar += amount;
+        total += recordTotal;
+        received += recordReceived;
+        due += recordDue;
+
+        rows += `
+
+        <tr>
+
+            <td>${index+1}</td>
+
+            <td>
+                ${escapeHtml(r.customer || "")}
+            </td>
+
+            <td>
+                <span class="print-phone">
+                    ${escapeHtml(
+                        formatPhoneDisplay(r.mobile)
+                    )}
+                </span>
+            </td>
+
+            <td>
+                ${escapeHtml(r.receiver || "")}
+            </td>
+
+            <td>
+                ${formatNumber(amount)}
+            </td>
+
+            <td>
+                ${formatNumber(rate)}
+            </td>
+
+            <td>
+                ${formatNumber(recordTotal)}
+            </td>
+
+            <td>
+                ${formatNumber(recordReceived)}
+            </td>
+
+            <td>
+                ${formatNumber(recordDue)}
+            </td>
+
+            <td>
+                ${
+                    r.status === "approved"
+                    ? "منظور شدہ"
+                    : "زیرِ کارروائی"
+                }
+            </td>
+
+            <td>
+                ${formatDate(r.record_date)}
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+
+    document.getElementById(
+        "printArea"
+    ).innerHTML = `
+
+    <div class="print-page">
+
+        <div class="print-title">
+
+            <h1>
+                Abo Safwan Currency
+            </h1>
+
+            <h2>
+                تمام کسٹمر حساب
+            </h2>
+
+        </div>
+
+
+        <table class="print-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>#</th>
+
+                    <th>کسٹمر</th>
+
+                    <th>موبائل</th>
+
+                    <th>وصول کنندہ</th>
+
+                    <th>ریال</th>
+
+                    <th>ریٹ</th>
+
+                    <th>کل رقم</th>
+
+                    <th>وصول</th>
+
+                    <th>بقایا</th>
+
+                    <th>حالت</th>
+
+                    <th>تاریخ</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                ${rows}
+
+            </tbody>
+
+            <tfoot>
+
+                <tr class="print-total">
+
+                    <td colspan="4">
+                        کل حساب
+                    </td>
+
+                    <td>
+                        ${formatNumber(sar)}
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
+                    <td>
+                        ${formatNumber(total)}
+                    </td>
+
+                    <td>
+                        ${formatNumber(received)}
+                    </td>
+
+                    <td>
+                        ${formatNumber(due)}
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
+                </tr>
+
+            </tfoot>
+
+        </table>
+
+    </div>
+
+    `;
+
+    window.print();
+
+}
+
+
+/* =================================================
+   PHONE
+================================================= */
+
+function formatPhoneDisplay(number){
+
+    if(!number) return "";
+
+    let n =
+        String(number)
+        .trim()
+        .replace(/[^\d+]/g,"");
+
+    if(n.startsWith("+")){
+
+        n =
+            "+" +
+            n.substring(1)
+            .replace(/\D/g,"");
+
+    }else{
+
+        n =
+            n.replace(/\D/g,"");
+
+    }
+
+    /* Saudi local */
+
+    if(/^05\d{8}$/.test(n)){
+
+        return "+966" +
+               n.substring(1);
+
+    }
+
+    /* Saudi international */
+
+    if(/^9665\d{8}$/.test(n)){
+
+        return "+" + n;
+
+    }
+
+    /* Pakistan local */
+
+    if(/^03\d{9}$/.test(n)){
+
+        return "+92" +
+               n.substring(1);
+
+    }
+
+    /* Pakistan international */
+
+    if(/^92\d{10}$/.test(n)){
+
+        return "+" + n;
+
+    }
+
+    return n;
+
+}
+
+
+function formatPhoneForWhatsApp(number){
+
+    if(!number) return "";
+
+    let n =
+        String(number)
+        .trim()
+        .replace(/[^\d+]/g,"");
+
+    if(n.startsWith("+")){
+
+        n =
+            n.substring(1)
+            .replace(/\D/g,"");
+
+    }else{
+
+        n =
+            n.replace(/\D/g,"");
+
+    }
+
+    if(/^05\d{8}$/.test(n)){
+
+        return "966" +
+               n.substring(1);
+
+    }
+
+    if(/^9665\d{8}$/.test(n)){
+
+        return n;
+
+    }
+
+    if(/^03\d{9}$/.test(n)){
+
+        return "92" +
+               n.substring(1);
+
+    }
+
+    if(/^92\d{10}$/.test(n)){
+
+        return n;
+
+    }
+
+    return n;
+
+}
+
+
+/* =================================================
+   HELPERS
+================================================= */
+
+function formatNumber(number){
+
+    const n =
+        Number(number || 0);
+
+    return n.toLocaleString(
+        "en-US",
+        {
+            minimumFractionDigits:
+                n % 1 !== 0 ? 2 : 0,
+            maximumFractionDigits:2
+        }
+    );
+
+}
+
+
+function formatDate(date){
+
+    if(!date) return "";
+
+    try{
+
+        return new Date(date)
+        .toLocaleString(
+            "ur-PK",
+            {
+                year:"numeric",
+                month:"2-digit",
+                day:"2-digit",
+                hour:"2-digit",
+                minute:"2-digit"
+            }
+        );
+
+    }catch(e){
+
+        return date;
+
+    }
+
+}
+
+
+function escapeHtml(value){
+
+    return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+function showMainMessage(message){
+
+    const box =
+        document.getElementById(
+            "mainMessage"
+        );
+
+    box.textContent = message;
+
+    box.classList.remove("hidden");
+
+    setTimeout(
+        ()=>box.classList.add("hidden"),
+        3000
+    );
+
+}
+
+
+/* =================================================
+   MODAL OUTSIDE CLICK
+================================================= */
+
+document
+.getElementById("updateModal")
+.addEventListener(
+    "click",
+    function(e){
+
+        if(e.target === this){
+
+            closeUpdate();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
