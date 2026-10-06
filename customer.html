@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Abo Safwan Currency</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Tahoma, Arial, sans-serif;
+    background:linear-gradient(135deg,#eef8f2,#f8fff9);
+    color:#173b2a;
+    min-height:100vh;
+}
+
+.container{
+    width:100%;
+    max-width:520px;
+    margin:auto;
+    padding:15px;
+}
+
+.header{
+    background:linear-gradient(135deg,#075e36,#0b8f54);
+    color:white;
+    padding:25px 18px;
+    border-radius:0 0 25px 25px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+
+.logo{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:#fff;
+    color:#08713f;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 12px;
+    font-size:27px;
+    font-weight:bold;
+}
+
+.header h1{
+    font-size:25px;
+    margin-bottom:5px;
+}
+
+.header p{
+    font-size:14px;
+    opacity:.9;
+}
+
+.card{
+    background:white;
+    margin-top:18px;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 4px 18px rgba(0,0,0,.08);
+}
+
+.card-title{
+    font-size:19px;
+    font-weight:bold;
+    color:#075e36;
+    margin-bottom:18px;
+    border-right:4px solid #d6a928;
+    padding-right:10px;
+}
+
+.info-box{
+    background:#f1faf5;
+    border:1px solid #d7eee1;
+    border-radius:14px;
+    padding:13px;
+    margin-bottom:10px;
+}
+
+.info-label{
+    font-size:12px;
+    color:#777;
+    margin-bottom:4px;
+}
+
+.info-value{
+    font-size:16px;
+    font-weight:bold;
+    color:#174f34;
+}
+
+label{
+    display:block;
+    margin:14px 0 7px;
+    font-weight:bold;
+    font-size:14px;
+}
+
+input{
+    width:100%;
+    border:1px solid #cbded3;
+    border-radius:12px;
+    padding:14px;
+    font-size:16px;
+    outline:none;
+    background:#fbfefc;
+}
+
+input:focus{
+    border-color:#0b8f54;
+    box-shadow:0 0 0 3px rgba(11,143,84,.10);
+}
+
+.rate-box{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:linear-gradient(135deg,#fff8df,#fffdf3);
+    border:1px solid #ead48c;
+    padding:15px;
+    border-radius:14px;
+    margin:15px 0;
+}
+
+.rate-title{
+    color:#705a13;
+    font-size:14px;
+}
+
+.rate-value{
+    color:#8a6810;
+    font-size:21px;
+    font-weight:bold;
+}
+
+.total-box{
+    background:linear-gradient(135deg,#e9f9ef,#f5fff8);
+    border:2px solid #bde4cc;
+    border-radius:15px;
+    padding:18px;
+    margin-top:15px;
+    text-align:center;
+}
+
+.total-title{
+    color:#4b6b59;
+    font-size:14px;
+}
+
+.total-value{
+    color:#075e36;
+    font-size:28px;
+    font-weight:bold;
+    margin-top:5px;
+}
+
+.btn{
+    width:100%;
+    border:none;
+    padding:15px;
+    border-radius:13px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:16px;
+}
+
+.btn-primary{
+    background:linear-gradient(135deg,#08713f,#0b9b5c);
+    color:white;
+    box-shadow:0 5px 12px rgba(8,113,63,.20);
+}
+
+.btn-primary:active{
+    transform:scale(.98);
+}
+
+.btn-secondary{
+    background:#f0f5f2;
+    color:#075e36;
+}
+
+.result{
+    display:none;
+    margin-top:18px;
+    padding:18px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.success{
+    background:#eaf9ef;
+    border:1px solid #b9e3c7;
+    color:#075e36;
+}
+
+.error{
+    background:#fff0f0;
+    border:1px solid #efbcbc;
+    color:#9b2020;
+}
+
+.tracking{
+    background:#fffdf0;
+    border:2px dashed #d5ae2e;
+    border-radius:13px;
+    padding:15px;
+    margin-top:12px;
+}
+
+.tracking-label{
+    font-size:13px;
+    color:#777;
+}
+
+.tracking-number{
+    font-size:21px;
+    font-weight:bold;
+    color:#765900;
+    margin-top:5px;
+    direction:ltr;
+    word-break:break-all;
+}
+
+.order{
+    border:1px solid #dcebe2;
+    border-radius:15px;
+    padding:15px;
+    margin-top:12px;
+    background:#fcfffd;
+}
+
+.order-row{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    padding:6px 0;
+    border-bottom:1px solid #eef4f0;
+}
+
+.order-row:last-child{
+    border-bottom:none;
+}
+
+.order-label{
+    color:#777;
+}
+
+.order-value{
+    font-weight:bold;
+}
+
+.status{
+    display:inline-block;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+    background:#fff4cf;
+    color:#785e00;
+}
+
+.logout{
+    text-align:center;
+    margin:20px 0;
+}
+
+.logout button{
+    background:none;
+    border:none;
+    color:#b02020;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.loading{
+    text-align:center;
+    color:#777;
+    padding:15px;
+}
+
+.hidden{
+    display:none !important;
+}
+
+.auth-card{
+    margin-top:30px;
+}
+
+.small{
+    font-size:12px;
+    color:#777;
+    margin-top:8px;
+    line-height:1.7;
+}
+
+footer{
+    text-align:center;
+    color:#777;
+    font-size:12px;
+    padding:25px 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="authSection">
+
+    <div class="header">
+        <div class="logo">ﷲ</div>
+        <h1>Abo Safwan Currency</h1>
+        <p>Saudi Riyal Exchange Service</p>
+    </div>
+
+    <div class="container">
+
+        <div class="card auth-card">
+
+            <div class="card-title">کسٹمر لاگ اِن</div>
+
+            <label>موبائل نمبر</label>
+            <input id="loginMobile"
+                   type="tel"
+                   inputmode="numeric"
+                   placeholder="مثلاً 03480968023">
+
+            <label>4 ہندسوں کا PIN</label>
+            <input id="loginPin"
+                   type="password"
+                   inputmode="numeric"
+                   maxlength="4"
+                   placeholder="••••">
+
+            <button class="btn btn-primary" onclick="loginCustomer()">
+                لاگ اِن
+            </button>
+
+            <button class="btn btn-secondary" onclick="showRegister()">
+                نیا اکاؤنٹ بنائیں
+            </button>
+
+            <div id="loginMessage" class="result"></div>
+
+        </div>
+
+        <div id="registerCard" class="card auth-card hidden">
+
+            <div class="card-title">نیا کسٹمر اکاؤنٹ</div>
+
+            <label>کسٹمر نام</label>
+            <input id="registerName"
+                   type="text"
+                   placeholder="اپنا نام لکھیں">
+
+            <label>موبائل نمبر</label>
+            <input id="registerMobile"
+                   type="tel"
+                   inputmode="numeric"
+                   placeholder="مثلاً 03480968023">
+
+            <label>4 ہندسوں کا PIN</label>
+            <input id="registerPin"
+                   type="password"
+                   inputmode="numeric"
+                   maxlength="4"
+                   placeholder="4 ہندسے">
+
+            <button class="btn btn-primary" onclick="registerCustomer()">
+                اکاؤنٹ بنائیں
+            </button>
+
+            <button class="btn btn-secondary" onclick="showLogin()">
+                واپس لاگ اِن
+            </button>
+
+            <div id="registerMessage" class="result"></div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div id="dashboard" class="hidden">
+
+    <div class="header">
+        <div class="logo">AS</div>
+        <h1>Abo Safwan Currency</h1>
+        <p>Saudi Riyal Exchange Service</p>
+    </div>
+
+    <div class="container">
+
+        <!-- Customer Information -->
+
+        <div class="card">
+
+            <div class="card-title">کسٹمر معلومات</div>
+
+            <div class="info-box">
+                <div class="info-label">کسٹمر نام</div>
+                <div id="customerName" class="info-value">---</div>
+            </div>
+
+            <div class="info-box">
+                <div class="info-label">موبائل نمبر</div>
+                <div id="customerMobile" class="info-value">---</div>
+            </div>
+
+        </div>
+
+
+        <!-- New Order -->
+
+        <div class="card">
+
+            <div class="card-title">نیا آرڈر</div>
+
+            <div class="rate-box">
+
+                <div class="rate-title">
+                    سعودی ریال کا موجودہ ریٹ
+                </div>
+
+                <div class="rate-value">
+                    1 SAR = <span id="rate">73</span> PKR
+                </div>
+
+            </div>
+
+            <label>وصول کنندہ کا نام</label>
+
+            <input id="receiver"
+                   type="text"
+                   placeholder="وصول کنندہ کا نام">
+
+            <label>رقم — سعودی ریال</label>
+
+            <input id="amount"
+                   type="number"
+                   min="1"
+                   step="0.01"
+                   placeholder="مثلاً 50"
+                   oninput="calculateTotal()">
+
+            <div class="total-box">
+
+                <div class="total-title">
+                    کل پاکستانی رقم
+                </div>
+
+                <div class="total-value">
+                    <span id="total">0</span> روپے
+                </div>
+
+            </div>
+
+            <button class="btn btn-primary"
+                    onclick="createOrder()">
+                🟢 آرڈر کریں
+            </button>
+
+            <div id="orderMessage" class="result"></div>
+
+        </div>
+
+
+        <!-- Tracking Search -->
+
+        <div class="card">
+
+            <div class="card-title">
+                ٹریکنگ نمبر سے آرڈر تلاش کریں
+            </div>
+
+            <label>Tracking Number</label>
+
+            <input id="trackingSearch"
+                   type="text"
+                   dir="ltr"
+                   placeholder="مثلاً AS-20261006-XXXXXXXX">
+
+            <button class="btn btn-primary"
+                    onclick="searchTracking()">
+                🔍 تلاش کریں
+            </button>
+
+            <div id="trackingMessage" class="result"></div>
+
+            <div id="trackingResult"></div>
+
+        </div>
+
+
+        <!-- My Orders -->
+
+        <div class="card">
+
+            <div class="card-title">
+                میرے آرڈرز
+            </div>
+
+            <div id="ordersList">
+                <div class="loading">
+                    آرڈرز لوڈ ہو رہے ہیں...
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="logout">
+            <button onclick="logoutCustomer()">
+                لاگ آؤٹ
+            </button>
+        </div>
+
+        <footer>
+            Abo Safwan Currency<br>
+            Saudi Riyal Exchange Service
+        </footer>
+
+    </div>
+</div>
+
+
+<script>
+
+/* ==============================
+   SUPABASE
+============================== */
+
+const SUPABASE_URL =
+"https://fcrgyjxdmcbqxqizuoto.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_Uunl1_GNG6s1hnWiEyjFmw_nQELLr89";
+
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* ==============================
+   CUSTOMER DATA
+============================== */
+
+let customer = null;
+let currentRate = 73;
+
+
+/* ==============================
+   PAGE LOAD
+============================== */
+
+window.addEventListener("load", async () => {
+
+    const saved =
+        localStorage.getItem("aboSafwanCustomer");
+
+    if(saved){
+
+        try{
+
+            customer = JSON.parse(saved);
+
+            if(customer &&
+               customer.customer_id){
+
+                showDashboard();
+
+                await loadRate();
+                await loadOrders();
+
+                return;
+            }
+
+        }catch(error){
+
+            console.log(error);
+
+        }
+    }
+
+    showAuth();
+
+});
+
+
+/* ==============================
+   SHOW AUTH
+============================== */
+
+function showAuth(){
+
+    document
+    .getElementById("authSection")
+    .classList.remove("hidden");
+
+    document
+    .getElementById("dashboard")
+    .classList.add("hidden");
+
+}
+
+
+/* ==============================
+   SHOW DASHBOARD
+============================== */
+
+function showDashboard(){
+
+    document
+    .getElementById("authSection")
+    .classList.add("hidden");
+
+    document
+    .getElementById("dashboard")
+    .classList.remove("hidden");
+
+    if(customer){
+
+        document
+        .getElementById("customerName")
+        .textContent =
+        customer.name || "---";
+
+        document
+        .getElementById("customerMobile")
+        .textContent =
+        customer.mobile || "---";
+
+    }
+
+}
+
+
+/* ==============================
+   LOGIN
+============================== */
+
+async function loginCustomer(){
+
+    const mobile =
+        document
+        .getElementById("loginMobile")
+        .value.trim();
+
+    const pin =
+        document
+        .getElementById("loginPin")
+        .value.trim();
+
+    if(!mobile){
+
+        showMessage(
+            "loginMessage",
+            "موبائل نمبر درج کریں",
+            false
+        );
+
+        return;
+    }
+
+    if(!/^\d{4}$/.test(pin)){
+
+        showMessage(
+            "loginMessage",
+            "PIN صرف 4 ہندسوں کا ہونا چاہیے",
+            false
+        );
+
+        return;
+    }
+
+    try{
+
+        const { data, error } =
+            await supabaseClient.rpc(
+                "customer_login",
+                {
+                    p_mobile: mobile,
+                    p_pin: pin
+                }
+            );
+
+        if(error) throw error;
+
+        if(!data || !data.success){
+
+            showMessage(
+                "loginMessage",
+                "موبائل نمبر یا PIN غلط ہے",
+                false
+            );
+
+            return;
+        }
+
+        customer = data;
+
+        localStorage.setItem(
+            "aboSafwanCustomer",
+            JSON.stringify(customer)
+        );
+
+        showDashboard();
+
+        await loadRate();
+        await loadOrders();
+
+    }catch(error){
+
+        console.error(error);
+
+        showMessage(
+            "loginMessage",
+            "لاگ اِن میں مسئلہ آیا۔ دوبارہ کوشش کریں۔",
+            false
+        );
+
+    }
+
+}
+
+
+/* ==============================
+   REGISTER
+============================== */
+
+async function registerCustomer(){
+
+    const name =
+        document
+        .getElementById("registerName")
+        .value.trim();
+
+    const mobile =
+        document
+        .getElementById("registerMobile")
+        .value.trim();
+
+    const pin =
+        document
+        .getElementById("registerPin")
+        .value.trim();
+
+    if(!name){
+
+        showMessage(
+            "registerMessage",
+            "کسٹمر نام درج کریں",
+            false
+        );
+
+        return;
+    }
+
+    if(!mobile){
+
+        showMessage(
+            "registerMessage",
+            "موبائل نمبر درج کریں",
+            false
+        );
+
+        return;
+    }
+
+    if(!/^\d{4}$/.test(pin)){
+
+        showMessage(
+            "registerMessage",
+            "PIN صرف 4 ہندسوں کا ہونا چاہیے",
+            false
+        );
+
+        return;
+    }
+
+    try{
+
+        const { data, error } =
+            await supabaseClient.rpc(
+                "create_customer_account",
+                {
+                    p_name: name,
+                    p_mobile: mobile,
+                    p_pin: pin
+                }
+            );
+
+        if(error) throw error;
+
+        if(!data || !data.success){
+
+            showMessage(
+                "registerMessage",
+                data?.message ||
+                "اکاؤنٹ نہیں بن سکا",
+                false
+            );
+
+            return;
+        }
+
+        customer = data;
+
+        localStorage.setItem(
+            "aboSafwanCustomer",
+            JSON.stringify(customer)
+        );
+
+        showDashboard();
+
+        await loadRate();
+        await loadOrders();
+
+    }catch(error){
+
+        console.error(error);
+
+        showMessage(
+            "registerMessage",
+            "اکاؤنٹ بنانے میں مسئلہ آیا۔",
+            false
+        );
+
+    }
+
+}
+
+
+/* ==============================
+   LOAD CURRENT RATE
+============================== */
+
+async function loadRate(){
+
+    try{
+
+        const { data, error } =
+            await supabaseClient
+            .from("currency_rates")
+            .select("rate")
+            .eq("currency_from","SAR")
+            .eq("currency_to","PKR")
+            .eq("is_active",true)
+            .limit(1)
+            .maybeSingle();
+
+        if(error) throw error;
+
+        if(data && data.rate){
+
+            currentRate =
+                Number(data.rate);
+
+        }else{
+
+            currentRate = 73;
+
+        }
+
+        document
+        .getElementById("rate")
+        .textContent =
+        formatNumber(currentRate);
+
+        calculateTotal();
+
+    }catch(error){
+
+        console.error(error);
+
+        currentRate = 73;
+
+        document
+        .getElementById("rate")
+        .textContent = "73";
+
+    }
+
+}
+
+
+/* ==============================
+   CALCULATE TOTAL
+============================== */
+
+function calculateTotal(){
+
+    const amount =
+        Number(
+            document
+            .getElementById("amount")
+            .value
+        ) || 0;
+
+    const total =
+        amount * currentRate;
+
+    document
+    .getElementById("total")
+    .textContent =
+    formatNumber(total);
+
+}
+
+
+/* ==============================
+   CREATE ORDER
+============================== */
+
+async function createOrder(){
+
+    if(!customer ||
+       !customer.customer_id){
+
+        alert("براہ کرم پہلے لاگ اِن کریں۔");
+
+        return;
+    }
+
+    const receiver =
+        document
+        .getElementById("receiver")
+        .value.trim();
+
+    const amount =
+        Number(
+            document
+            .getElementById("amount")
+            .value
+        );
+
+    if(!receiver){
+
+        showMessage(
+            "orderMessage",
+            "وصول کنندہ کا نام درج کریں",
+            false
+        );
+
+        return;
+    }
+
+    if(!amount || amount <= 0){
+
+        showMessage(
+            "orderMessage",
+            "ریال کی درست رقم درج کریں",
+            false
+        );
+
+        return;
+    }
+
+    const button =
+        document.querySelector(
+            ".btn-primary"
+        );
+
+    try{
+
+        button.disabled = true;
+        button.textContent =
+            "آرڈر درج ہو رہا ہے...";
+
+        const { data, error } =
+            await supabaseClient.rpc(
+                "create_customer_currency_order",
+                {
+                    p_customer_id:
+                        customer.customer_id,
+
+                    p_receiver:
+                        receiver,
+
+                    p_amount:
+                        amount
+                }
+            );
+
+        if(error) throw error;
+
+        let order = data;
+
+        /*
+          بعض Supabase RPC responses
+          array کی شکل میں آ سکتے ہیں۔
+        */
+
+        if(Array.isArray(order)){
+            order = order[0];
+        }
+
+        if(!order){
+
+            throw new Error(
+                "Order was not returned"
+            );
+
+        }
+
+        let tracking =
+            order.tracking_number;
+
+        showMessage(
+            "orderMessage",
+            "آپ کا آرڈر کامیابی سے درج ہوگیا۔",
+            true
+        );
+
+        const message =
+            document.getElementById(
+                "orderMessage"
+            );
+
+        message.innerHTML = `
+            <strong>آپ کا آرڈر کامیابی سے درج ہوگیا۔</strong>
+
+            <div class="tracking">
+
+                <div class="tracking-label">
+                    آپ کا Tracking Number
+                </div>
+
+                <div class="tracking-number">
+                    ${escapeHtml(tracking || "---")}
+                </div>
+
+            </div>
+        `;
+
+        document
+        .getElementById("receiver")
+        .value = "";
+
+        document
+        .getElementById("amount")
+        .value = "";
+
+        document
+        .getElementById("total")
+        .textContent = "0";
+
+        await loadOrders();
+
+    }catch(error){
+
+        console.error(error);
+
+        showMessage(
+            "orderMessage",
+            "آرڈر درج نہیں ہو سکا۔ دوبارہ کوشش کریں۔",
+            false
+        );
+
+    }finally{
+
+        button.disabled = false;
+        button.textContent = "🟢 آرڈر کریں";
+
+    }
+
+}
+
+
+/* ==============================
+   LOAD CUSTOMER ORDERS
+============================== */
+
+async function loadOrders(){
+
+    if(!customer ||
+       !customer.customer_id){
+
+        return;
+    }
+
+    const container =
+        document.getElementById(
+            "ordersList"
+        );
+
+    container.innerHTML =
+        `<div class="loading">
+            آرڈرز لوڈ ہو رہے ہیں...
+        </div>`;
+
+    try{
+
+        const { data, error } =
+            await supabaseClient.rpc(
+                "get_customer_orders",
+                {
+                    p_customer_id:
+                        customer.customer_id
+                }
+            );
+
+        if(error) throw error;
+
+        if(!data || data.length === 0){
+
+            container.innerHTML =
+                `<div class="loading">
+                    ابھی کوئی آرڈر موجود نہیں۔
+                </div>`;
+
+            return;
+        }
+
+        container.innerHTML =
+            data.map(order => {
+
+                const status =
+                    order.status === "approved"
+                    ? "منظور شدہ"
+                    : "زیرِ کارروائی";
+
+                const total =
+                    Number(order.total || 0);
+
+                return `
+
+                    <div class="order">
+
+                        <div class="order-row">
+                            <span class="order-label">
+                                Tracking Number
+                            </span>
+
+                            <span class="order-value"
+                                  dir="ltr">
+                                ${escapeHtml(
+                                    order.tracking_number || "---"
+                                )}
+                            </span>
+                        </div>
+
+                        <div class="order-row">
+                            <span class="order-label">
+                                وصول کنندہ
+                            </span>
+
+                            <span class="order-value">
+                                ${escapeHtml(
+                                    order.receiver || "---"
+                                )}
+                            </span>
+                        </div>
+
+                        <div class="order-row">
+                            <span class="order-label">
+                                ریال
+                            </span>
+
+                            <span class="order-value">
+                                ${formatNumber(
+                                    order.amount || 0
+                                )}
+                            </span>
+                        </div>
+
+                        <div class="order-row">
+                            <span class="order-label">
+                                ریٹ
+                            </span>
+
+                            <span class="order-value">
+                                ${formatNumber(
+                                    order.rate || 0
+                                )}
+                            </span>
+                        </div>
+
+                        <div class="order-row">
+                            <span class="order-label">
+                                کل پاکستانی
+                            </span>
+
+                            <span class="order-value">
+                                ${formatNumber(total)}
+                                روپے
+                            </span>
+                        </div>
+
+                        <div class="order-row">
+                            <span class="order-label">
+                                حالت
+                            </span>
+
+                            <span class="status">
+                                ${status}
+                            </span>
+                        </div>
+
+                    </div>
+
+                `;
+
+            }).join("");
+
+    }catch(error){
+
+        console.error(error);
+
+        container.innerHTML =
+            `<div class="loading">
+                آرڈرز لوڈ نہیں ہو سکے۔
+            </div>`;
+
+    }
+
+}
+
+
+/* ==============================
+   TRACKING SEARCH
+============================== */
+
+async function searchTracking(){
+
+    if(!customer ||
+       !customer.customer_id){
+
+        showMessage(
+            "trackingMessage",
+            "براہ کرم پہلے لاگ اِن کریں۔",
+            false
+        );
+
+        return;
+    }
+
+    const tracking =
+        document
+        .getElementById("trackingSearch")
+        .value.trim();
+
+    if(!tracking){
+
+        showMessage(
+            "trackingMessage",
+            "Tracking Number درج کریں۔",
+            false
+        );
+
+        return;
+    }
+
+    try{
+
+        const { data, error } =
+            await supabaseClient.rpc(
+                "search_customer_tracking",
+                {
+                    p_customer_id:
+                        customer.customer_id,
+
+                    p_tracking_number:
+                        tracking
+                }
+            );
+
+        if(error) throw error;
+
+        if(!data || data.length === 0){
+
+            document
+            .getElementById(
+                "trackingResult"
+            )
+            .innerHTML = "";
+
+            showMessage(
+                "trackingMessage",
+                "یہ Tracking Number نہیں ملا۔",
+                false
+            );
+
+            return;
+        }
+
+        const order = data[0];
+
+        document
+        .getElementById(
+            "trackingResult"
+        )
+        .innerHTML = `
+
+            <div class="order">
+
+                <div class="order-row">
+                    <span class="order-label">
+                        Tracking Number
+                    </span>
+
+                    <span class="order-value"
+                          dir="ltr">
+                        ${escapeHtml(
+                            order.tracking_number
+                        )}
+                    </span>
+                </div>
+
+                <div class="order-row">
+                    <span class="order-label">
+                        کسٹمر نام
+                    </span>
+
+                    <span class="order-value">
+                        ${escapeHtml(
+                            order.customer || "---"
+                        )}
+                    </span>
+                </div>
+
+                <div class="order-row">
+                    <span class="order-label">
+                        وصول کنندہ
+                    </span>
+
+                    <span class="order-value">
+                        ${escapeHtml(
+                            order.receiver || "---"
+                        )}
+                    </span>
+                </div>
+
+                <div class="order-row">
+                    <span class="order-label">
+                        ریال
+                    </span>
+
+                    <span class="order-value">
+                        ${formatNumber(
+                            order.amount || 0
+                        )}
+                    </span>
+                </div>
+
+                <div class="order-row">
+                    <span class="order-label">
+                        ریٹ
+                    </span>
+
+                    <span class="order-value">
+                        ${formatNumber(
+                            order.rate || 0
+                        )}
+                    </span>
+                </div>
+
+                <div class="order-row">
+                    <span class="order-label">
+                        کل پاکستانی
+                    </span>
+
+                    <span class="order-value">
+                        ${formatNumber(
+                            order.total || 0
+                        )} روپے
+                    </span>
+                </div>
+
+                <div class="order-row">
+                    <span class="order-label">
+                        حالت
+                    </span>
+
+                    <span class="status">
+                        ${
+                            order.status === "approved"
+                            ? "منظور شدہ"
+                            : "زیرِ کارروائی"
+                        }
+                    </span>
+                </div>
+
+            </div>
+
+        `;
+
+        showMessage(
+            "trackingMessage",
+            "آرڈر مل گیا۔",
+            true
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        showMessage(
+            "trackingMessage",
+            "Tracking Search میں مسئلہ آیا۔",
+            false
+        );
+
+    }
+
+}
+
+
+/* ==============================
+   LOGOUT
+============================== */
+
+function logoutCustomer(){
+
+    localStorage.removeItem(
+        "aboSafwanCustomer"
+    );
+
+    customer = null;
+
+    document
+    .getElementById("loginMobile")
+    .value = "";
+
+    document
+    .getElementById("loginPin")
+    .value = "";
+
+    showAuth();
+
+}
+
+
+/* ==============================
+   LOGIN / REGISTER SWITCH
+============================== */
+
+function showRegister(){
+
+    document
+    .getElementById("registerCard")
+    .classList.remove("hidden");
+
+    document
+    .getElementById("loginMobile")
+    .value = "";
+
+    document
+    .getElementById("loginPin")
+    .value = "";
+
+}
+
+
+function showLogin(){
+
+    document
+    .getElementById("registerCard")
+    .classList.add("hidden");
+
+}
+
+
+/* ==============================
+   MESSAGE
+============================== */
+
+function showMessage(
+    elementId,
+    message,
+    success
+){
+
+    const element =
+        document.getElementById(
+            elementId
+        );
+
+    element.className =
+        "result " +
+        (success ? "success" : "error");
+
+    element.innerHTML =
+        message;
+
+    element.style.display =
+        "block";
+
+}
+
+
+/* ==============================
+   NUMBER FORMAT
+============================== */
+
+function formatNumber(number){
+
+    return Number(number || 0)
+        .toLocaleString("en-US", {
+            maximumFractionDigits:2
+        });
+
+}
+
+
+/* ==============================
+   HTML SECURITY
+============================== */
+
+function escapeHtml(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+</script>
+
+</body>
+</html>
