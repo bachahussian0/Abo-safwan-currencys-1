@@ -1,0 +1,1908 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Abo Safwan Currency - Admin</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Tahoma,Arial,sans-serif;
+    background:#f1f5f9;
+    color:#172033;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:15px;
+}
+
+.header{
+    background:#0f5132;
+    color:white;
+    padding:20px;
+    border-radius:14px;
+    margin-bottom:15px;
+    text-align:center;
+}
+
+.header h1{
+    margin:0 0 8px;
+    font-size:28px;
+}
+
+.header p{
+    margin:0;
+}
+
+.card{
+    background:white;
+    padding:18px;
+    border-radius:14px;
+    margin-bottom:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,.07);
+}
+
+h2{
+    margin-top:0;
+    color:#0f5132;
+}
+
+input,button,select{
+    width:100%;
+    padding:12px;
+    margin:6px 0;
+    border-radius:8px;
+    border:1px solid #cbd5e1;
+    font-size:15px;
+}
+
+button{
+    background:#0f5132;
+    color:white;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+.btn-danger{
+    background:#b42318;
+}
+
+.btn-warning{
+    background:#b7791f;
+}
+
+.btn-blue{
+    background:#175cd3;
+}
+
+.btn-gray{
+    background:#475467;
+}
+
+.login{
+    max-width:420px;
+    margin:70px auto;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.stat{
+    background:white;
+    padding:18px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+
+.stat strong{
+    display:block;
+    font-size:25px;
+    color:#0f5132;
+    margin-top:8px;
+}
+
+.rate-box{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.rate-box input{
+    margin:0;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+    background:white;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:9px;
+    text-align:center;
+    white-space:nowrap;
+}
+
+th{
+    background:#0f5132;
+    color:white;
+}
+
+.status-pending{
+    color:#b7791f;
+    font-weight:bold;
+}
+
+.status-approved{
+    color:#067647;
+    font-weight:bold;
+}
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+.actions{
+    display:flex;
+    gap:5px;
+    flex-wrap:wrap;
+}
+
+.actions button{
+    width:auto;
+    padding:8px 12px;
+}
+
+.message{
+    padding:10px;
+    border-radius:8px;
+    margin-top:8px;
+    display:none;
+}
+
+.success{
+    background:#dcfae6;
+    color:#05603a;
+}
+
+.error{
+    background:#fee4e2;
+    color:#b42318;
+}
+
+.hidden{
+    display:none!important;
+}
+
+.print-only{
+    display:none;
+}
+
+@media(max-width:800px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .header h1{
+        font-size:22px;
+    }
+
+    th,td{
+        font-size:13px;
+        padding:7px;
+    }
+}
+
+@media print{
+
+    body{
+        background:white;
+    }
+
+    .no-print,
+    .header,
+    .stats,
+    .rate-card,
+    .search-card,
+    .actions,
+    button{
+        display:none!important;
+    }
+
+    .print-only{
+        display:block;
+    }
+
+    .card{
+        box-shadow:none;
+        border:0;
+    }
+
+    table{
+        font-size:11px;
+    }
+
+    @page{
+        size:A4 portrait;
+        margin:10mm;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="loginPage" class="login card">
+
+    <h2 style="text-align:center;">
+        Abo Safwan Currency
+    </h2>
+
+    <p style="text-align:center;">
+        Admin Login
+    </p>
+
+    <input
+        type="email"
+        id="email"
+        placeholder="ای میل"
+        autocomplete="email"
+    >
+
+    <input
+        type="password"
+        id="password"
+        placeholder="پاس ورڈ"
+        autocomplete="current-password"
+    >
+
+    <button onclick="login()">
+        Admin Login
+    </button>
+
+    <div id="loginMessage" class="message"></div>
+
+</div>
+
+
+<!-- ADMIN DASHBOARD -->
+<div id="adminPage" class="hidden">
+
+<div class="container">
+
+    <div class="header no-print">
+
+        <h1>
+            Abo Safwan Currency
+        </h1>
+
+        <p>
+            Admin Dashboard
+        </p>
+
+        <button
+            class="btn-danger"
+            style="max-width:180px;margin-top:12px"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </div>
+
+
+    <!-- STATS -->
+    <div class="stats no-print">
+
+        <div class="stat">
+            کل آرڈر
+            <strong id="totalOrders">0</strong>
+        </div>
+
+        <div class="stat">
+            Pending
+            <strong id="pendingOrders">0</strong>
+        </div>
+
+        <div class="stat">
+            Approved
+            <strong id="approvedOrders">0</strong>
+        </div>
+
+        <div class="stat">
+            بقایا
+            <strong id="totalDue">0</strong>
+        </div>
+
+    </div>
+
+
+    <!-- RATE -->
+    <div class="card rate-card no-print">
+
+        <h2>
+            موجودہ سعودی ریٹ
+        </h2>
+
+        <div class="rate-box">
+
+            <input
+                type="number"
+                id="rateInput"
+                step="0.01"
+                min="0"
+                placeholder="مثلاً 75"
+            >
+
+            <button onclick="updateRate()">
+                ریٹ محفوظ کریں
+            </button>
+
+        </div>
+
+        <p>
+            موجودہ ریٹ:
+            <strong id="currentRate">---</strong>
+            روپے
+        </p>
+
+        <div id="rateMessage" class="message"></div>
+
+    </div>
+
+
+    <!-- SEARCH -->
+    <div class="card search-card no-print">
+
+        <h2>
+            Tracking Number تلاش کریں
+        </h2>
+
+        <input
+            type="text"
+            id="trackingSearch"
+            placeholder="مثلاً AS-20261006-XXXXXXXX"
+        >
+
+        <button onclick="searchTracking()">
+            تلاش کریں
+        </button>
+
+        <div id="searchResult"></div>
+
+    </div>
+
+
+    <!-- PENDING -->
+    <div class="card">
+
+        <h2>
+            Pending Orders
+        </h2>
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Tracking</th>
+                        <th>کسٹمر</th>
+                        <th>موبائل</th>
+                        <th>حصول کنندہ</th>
+                        <th>ریال</th>
+                        <th>ریٹ</th>
+                        <th>کل روپے</th>
+                        <th>وصول</th>
+                        <th>بقایا</th>
+                        <th>تاریخ</th>
+                        <th class="no-print">عمل</th>
+                    </tr>
+                </thead>
+
+                <tbody id="pendingTable">
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- APPROVED -->
+    <div class="card">
+
+        <h2>
+            Approved / Completed Orders
+        </h2>
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Tracking</th>
+                        <th>کسٹمر</th>
+                        <th>موبائل</th>
+                        <th>حصول کنندہ</th>
+                        <th>ریال</th>
+                        <th>ریٹ</th>
+                        <th>کل روپے</th>
+                        <th>وصول</th>
+                        <th>بقایا</th>
+                        <th>تاریخ</th>
+                        <th class="no-print">عمل</th>
+                    </tr>
+                </thead>
+
+                <tbody id="approvedTable">
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- PRINT -->
+    <div class="card no-print">
+
+        <button
+            class="btn-blue"
+            onclick="printAll()"
+        >
+            A4 پرنٹ
+        </button>
+
+    </div>
+
+
+    <!-- PRINT AREA -->
+    <div id="printArea" class="print-only">
+
+        <h2 style="text-align:center;">
+            Abo Safwan Currency
+        </h2>
+
+        <h3 style="text-align:center;">
+            Currency Exchange Report
+        </h3>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Tracking</th>
+                    <th>Customer</th>
+                    <th>Mobile</th>
+                    <th>Receiver</th>
+                    <th>SAR</th>
+                    <th>Rate</th>
+                    <th>Total PKR</th>
+                    <th>Received</th>
+                    <th>Due</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody id="printTable">
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<script>
+
+const SUPABASE_URL =
+"https://fcrgyjxdmcbqxqizuoto.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_Uunl1_GNG6s1hnWiEyjFmw_nQELLr89";
+
+const ADMIN_ID =
+"d4b5b48a-d8d2-4b84-b21e-f25ffa1db734";
+
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+let allOrders = [];
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+function showMessage(id,text,type="success"){
+
+    const el=document.getElementById(id);
+
+    el.innerText=text;
+
+    el.className="message "+type;
+
+    el.style.display="block";
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+async function login(){
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+
+    if(!email || !password){
+
+        showMessage(
+            "loginMessage",
+            "ای میل اور پاس ورڈ درج کریں",
+            "error"
+        );
+
+        return;
+    }
+
+
+    try{
+
+        const {data,error} =
+            await supabaseClient.auth.signInWithPassword({
+                email:email,
+                password:password
+            });
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        if(!data.user){
+
+            throw new Error(
+                "User نہیں ملا"
+            );
+
+        }
+
+
+        if(data.user.id !== ADMIN_ID){
+
+            await supabaseClient.auth.signOut();
+
+            throw new Error(
+                "یہ اکاونٹ Admin نہیں ہے"
+            );
+
+        }
+
+
+        document
+            .getElementById("loginPage")
+            .classList.add("hidden");
+
+        document
+            .getElementById("adminPage")
+            .classList.remove("hidden");
+
+
+        await loadDashboard();
+
+
+    }catch(error){
+
+        console.error(error);
+
+        showMessage(
+            "loginMessage",
+            "Login ناکام: "+error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+async function logout(){
+
+    await supabaseClient.auth.signOut();
+
+    location.reload();
+
+}
+
+
+/* =========================
+   CURRENT RATE
+========================= */
+
+async function loadRate(){
+
+    const {
+        data,
+        error
+    } = await supabaseClient
+
+        .from("currency_rates")
+
+        .select("*")
+
+        .eq("currency_from","SAR")
+
+        .eq("currency_to","PKR")
+
+        .eq("is_active",true)
+
+        .order("created_at",{ascending:false})
+
+        .limit(1);
+
+
+    if(error){
+
+        console.error(error);
+
+        return;
+
+    }
+
+
+    if(data && data.length){
+
+        const rate =
+            Number(data[0].rate);
+
+        document
+            .getElementById("currentRate")
+            .innerText =
+            rate.toLocaleString();
+
+        document
+            .getElementById("rateInput")
+            .value =
+            rate;
+
+    }
+
+}
+
+
+/* =========================
+   UPDATE RATE
+========================= */
+
+async function updateRate(){
+
+    const rate =
+        Number(
+            document
+                .getElementById("rateInput")
+                .value
+        );
+
+
+    if(!rate || rate<=0){
+
+        showMessage(
+            "rateMessage",
+            "درست ریٹ درج کریں",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        const {
+            data:userData
+        } =
+            await supabaseClient.auth.getUser();
+
+
+        const user =
+            userData.user;
+
+
+        if(!user || user.id !== ADMIN_ID){
+
+            throw new Error(
+                "Admin اجازت درکار ہے"
+            );
+
+        }
+
+
+        /*
+         پہلے پرانا active rate بند کریں
+        */
+
+        const {error:disableError} =
+            await supabaseClient
+
+                .from("currency_rates")
+
+                .update({
+                    is_active:false
+                })
+
+                .eq("currency_from","SAR")
+
+                .eq("currency_to","PKR")
+
+                .eq("is_active",true);
+
+
+        if(disableError){
+
+            throw disableError;
+
+        }
+
+
+        /*
+         نیا rate
+        */
+
+        const {error:insertError} =
+            await supabaseClient
+
+                .from("currency_rates")
+
+                .insert({
+
+                    rate:rate,
+
+                    currency_from:"SAR",
+
+                    currency_to:"PKR",
+
+                    is_active:true,
+
+                    created_by:user.id
+
+                });
+
+
+        if(insertError){
+
+            throw insertError;
+
+        }
+
+
+        showMessage(
+            "rateMessage",
+            "نیا ریٹ کامیابی سے محفوظ ہوگیا"
+        );
+
+
+        await loadRate();
+
+        await loadOrders();
+
+
+    }catch(error){
+
+        console.error(error);
+
+        showMessage(
+            "rateMessage",
+            "ریٹ محفوظ نہیں ہوا: "+error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =========================
+   LOAD ORDERS
+========================= */
+
+async function loadOrders(){
+
+    const {
+        data,
+        error
+    } = await supabaseClient
+
+        .from("currency_records")
+
+        .select("*")
+
+        .order("record_date",{
+            ascending:false
+        });
+
+
+    if(error){
+
+        console.error(error);
+
+        alert(
+            "Orders load نہیں ہوئے: "+
+            error.message
+        );
+
+        return;
+
+    }
+
+
+    allOrders =
+        data || [];
+
+
+    renderTables();
+
+    updateStats();
+
+}
+
+
+/* =========================
+   FORMAT NUMBER
+========================= */
+
+function num(value){
+
+    return Number(value || 0)
+        .toLocaleString(
+            "en-US",
+            {
+                maximumFractionDigits:2
+            }
+        );
+
+}
+
+
+/* =========================
+   DATE
+========================= */
+
+function date(value){
+
+    if(!value) return "";
+
+    return new Date(value)
+        .toLocaleString("ur-PK");
+
+}
+
+
+/* =========================
+   RENDER TABLES
+========================= */
+
+function renderTables(){
+
+    const pending =
+        allOrders.filter(
+            x => x.status === "pending"
+        );
+
+
+    const approved =
+        allOrders.filter(
+            x => x.status === "approved"
+        );
+
+
+    document
+        .getElementById("pendingTable")
+        .innerHTML =
+        pending.map(orderRow).join("");
+
+
+    document
+        .getElementById("approvedTable")
+        .innerHTML =
+        approved.map(orderRow).join("");
+
+
+    document
+        .getElementById("printTable")
+        .innerHTML =
+        allOrders.map(
+            printRow
+        ).join("");
+
+}
+
+
+/* =========================
+   ORDER ROW
+========================= */
+
+function orderRow(o){
+
+    const total =
+        Number(
+            o.total ||
+            (
+                Number(o.amount||0) *
+                Number(o.rate||0)
+            )
+        );
+
+
+    const received =
+        Number(
+            o.total_received ||
+            o.received ||
+            0
+        );
+
+
+    const due =
+        Math.max(
+            total-received,
+            0
+        );
+
+
+    let actions="";
+
+
+    if(o.status==="pending"){
+
+        actions += `
+            <button
+                class="btn-blue"
+                onclick="approveOrder('${o.id}')"
+            >
+                Approve
+            </button>
+        `;
+
+    }
+
+
+    actions += `
+        <button
+            class="btn-warning"
+            onclick="editOrder('${o.id}')"
+        >
+            Update
+        </button>
+
+        <button
+            class="btn-danger"
+            onclick="deleteOrder('${o.id}')"
+        >
+            Delete
+        </button>
+
+        <button
+            class="btn-gray"
+            onclick="printSingle('${o.id}')"
+        >
+            Print
+        </button>
+    `;
+
+
+    return `
+
+    <tr>
+
+        <td>
+            <strong>
+                ${escapeHtml(o.tracking_number || "-")}
+            </strong>
+        </td>
+
+        <td>
+            ${escapeHtml(o.customer || "-")}
+        </td>
+
+        <td>
+            ${escapeHtml(o.mobile || "-")}
+        </td>
+
+        <td>
+            ${escapeHtml(o.receiver || "-")}
+        </td>
+
+        <td>
+            ${num(o.amount)}
+        </td>
+
+        <td>
+            ${num(o.rate)}
+        </td>
+
+        <td>
+            ${num(total)}
+        </td>
+
+        <td>
+            ${num(received)}
+        </td>
+
+        <td>
+            ${num(due)}
+        </td>
+
+        <td>
+            ${date(o.record_date)}
+        </td>
+
+        <td class="no-print">
+
+            <div class="actions">
+
+                ${actions}
+
+            </div>
+
+        </td>
+
+    </tr>
+
+    `;
+
+}
+
+
+/* =========================
+   PRINT ROW
+========================= */
+
+function printRow(o){
+
+    const total =
+        Number(
+            o.total ||
+            Number(o.amount||0) *
+            Number(o.rate||0)
+        );
+
+
+    const received =
+        Number(
+            o.total_received ||
+            o.received ||
+            0
+        );
+
+
+    const due =
+        Math.max(
+            total-received,
+            0
+        );
+
+
+    return `
+
+    <tr>
+
+        <td>${escapeHtml(o.tracking_number||"-")}</td>
+
+        <td>${escapeHtml(o.customer||"-")}</td>
+
+        <td>${escapeHtml(o.mobile||"-")}</td>
+
+        <td>${escapeHtml(o.receiver||"-")}</td>
+
+        <td>${num(o.amount)}</td>
+
+        <td>${num(o.rate)}</td>
+
+        <td>${num(total)}</td>
+
+        <td>${num(received)}</td>
+
+        <td>${num(due)}</td>
+
+        <td>${o.status==="approved"?"Approved":"Pending"}</td>
+
+    </tr>
+
+    `;
+
+}
+
+
+/* =========================
+   APPROVE
+========================= */
+
+async function approveOrder(id){
+
+    if(!confirm(
+        "کیا آپ اس آرڈر کو Approve کرنا چاہتے ہیں؟"
+    )){
+
+        return;
+
+    }
+
+
+    try{
+
+        const {
+            error
+        } =
+            await supabaseClient.rpc(
+                "approve_currency_order",
+                {
+                    p_order_id:id
+                }
+            );
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        alert(
+            "Order کامیابی سے Approved ہوگیا"
+        );
+
+
+        await loadOrders();
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Approve ناکام: "+
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================
+   UPDATE ORDER
+========================= */
+
+async function editOrder(id){
+
+    const order =
+        allOrders.find(
+            x => x.id === id
+        );
+
+
+    if(!order){
+
+        alert("Order نہیں ملا");
+
+        return;
+
+    }
+
+
+    const received =
+        prompt(
+            "وصول شدہ رقم درج کریں:",
+            order.total_received ||
+            order.received ||
+            0
+        );
+
+
+    if(received===null){
+
+        return;
+
+    }
+
+
+    const receivedNumber =
+        Number(received);
+
+
+    if(
+        Number.isNaN(receivedNumber) ||
+        receivedNumber<0
+    ){
+
+        alert(
+            "درست رقم درج کریں"
+        );
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+
+            .from("currency_records")
+
+            .update({
+                total_received:
+                    receivedNumber
+            })
+
+            .eq("id",id);
+
+
+    if(error){
+
+        alert(
+            "Update ناکام: "+
+            error.message
+        );
+
+        return;
+
+    }
+
+
+    alert(
+        "وصول شدہ رقم Update ہوگئی"
+    );
+
+
+    await loadOrders();
+
+}
+
+
+/* =========================
+   DELETE
+========================= */
+
+async function deleteOrder(id){
+
+    if(!confirm(
+        "کیا آپ واقعی یہ Order Delete کرنا چاہتے ہیں؟"
+    )){
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+
+            .from("currency_records")
+
+            .delete()
+
+            .eq("id",id);
+
+
+    if(error){
+
+        alert(
+            "Delete ناکام: "+
+            error.message
+        );
+
+        return;
+
+    }
+
+
+    alert(
+        "Order Delete ہوگیا"
+    );
+
+
+    await loadOrders();
+
+}
+
+
+/* =========================
+   TRACKING SEARCH
+========================= */
+
+async function searchTracking(){
+
+    const tracking =
+        document
+            .getElementById("trackingSearch")
+            .value
+            .trim();
+
+
+    if(!tracking){
+
+        alert(
+            "Tracking Number درج کریں"
+        );
+
+        return;
+
+    }
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+
+            .from("currency_records")
+
+            .select("*")
+
+            .eq("tracking_number",tracking)
+            
+            .maybeSingle();
+
+
+    if(error){
+
+        document
+            .getElementById("searchResult")
+            .innerHTML =
+            `<div class="message error"
+             style="display:block">
+             ${escapeHtml(error.message)}
+             </div>`;
+
+        return;
+
+    }
+
+
+    if(!data){
+
+        document
+            .getElementById("searchResult")
+            .innerHTML =
+            `<div class="message error"
+             style="display:block">
+             Tracking Number نہیں ملا
+             </div>`;
+
+        return;
+
+    }
+
+
+    const total =
+        Number(
+            data.total ||
+            Number(data.amount||0) *
+            Number(data.rate||0)
+        );
+
+
+    const received =
+        Number(
+            data.total_received ||
+            data.received ||
+            0
+        );
+
+
+    const due =
+        Math.max(
+            total-received,
+            0
+        );
+
+
+    document
+        .getElementById("searchResult")
+        .innerHTML = `
+
+        <div class="card">
+
+            <h3>
+                Order Detail
+            </h3>
+
+            <p>
+                <b>Tracking:</b>
+                ${escapeHtml(data.tracking_number)}
+            </p>
+
+            <p>
+                <b>Customer:</b>
+                ${escapeHtml(data.customer)}
+            </p>
+
+            <p>
+                <b>Mobile:</b>
+                ${escapeHtml(data.mobile||"-")}
+            </p>
+
+            <p>
+                <b>Receiver:</b>
+                ${escapeHtml(data.receiver||"-")}
+            </p>
+
+            <p>
+                <b>Saudi Riyal:</b>
+                ${num(data.amount)}
+            </p>
+
+            <p>
+                <b>Rate:</b>
+                ${num(data.rate)}
+            </p>
+
+            <p>
+                <b>Total PKR:</b>
+                ${num(total)}
+            </p>
+
+            <p>
+                <b>Received:</b>
+                ${num(received)}
+            </p>
+
+            <p>
+                <b>Due:</b>
+                ${num(due)}
+            </p>
+
+            <p>
+                <b>Status:</b>
+                ${data.status==="approved"
+                    ?"Approved"
+                    :"Pending"}
+            </p>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+function updateStats(){
+
+    const total =
+        allOrders.length;
+
+
+    const pending =
+        allOrders.filter(
+            x => x.status==="pending"
+        ).length;
+
+
+    const approved =
+        allOrders.filter(
+            x => x.status==="approved"
+        ).length;
+
+
+    let due=0;
+
+
+    allOrders.forEach(o=>{
+
+        const totalOrder =
+            Number(
+                o.total ||
+                Number(o.amount||0) *
+                Number(o.rate||0)
+            );
+
+
+        const received =
+            Number(
+                o.total_received ||
+                o.received ||
+                0
+            );
+
+
+        due +=
+            Math.max(
+                totalOrder-received,
+                0
+            );
+
+    });
+
+
+    document
+        .getElementById("totalOrders")
+        .innerText =
+        total;
+
+
+    document
+        .getElementById("pendingOrders")
+        .innerText =
+        pending;
+
+
+    document
+        .getElementById("approvedOrders")
+        .innerText =
+        approved;
+
+
+    document
+        .getElementById("totalDue")
+        .innerText =
+        num(due);
+
+}
+
+
+/* =========================
+   PRINT ALL
+========================= */
+
+function printAll(){
+
+    window.print();
+
+}
+
+
+/* =========================
+   PRINT SINGLE
+========================= */
+
+function printSingle(id){
+
+    const order =
+        allOrders.find(
+            x => x.id===id
+        );
+
+
+    if(!order){
+
+        alert(
+            "Order نہیں ملا"
+        );
+
+        return;
+
+    }
+
+
+    const total =
+        Number(
+            order.total ||
+            Number(order.amount||0) *
+            Number(order.rate||0)
+        );
+
+
+    const received =
+        Number(
+            order.total_received ||
+            order.received ||
+            0
+        );
+
+
+    const due =
+        Math.max(
+            total-received,
+            0
+        );
+
+
+    const printWindow =
+        window.open(
+            "",
+            "_blank"
+        );
+
+
+    printWindow.document.write(`
+
+    <!DOCTYPE html>
+
+    <html lang="ur" dir="rtl">
+
+    <head>
+
+        <meta charset="UTF-8">
+
+        <title>
+            ${escapeHtml(order.tracking_number)}
+        </title>
+
+        <style>
+
+            @page{
+                size:A4;
+                margin:15mm;
+            }
+
+            body{
+                font-family:Tahoma,Arial;
+                direction:rtl;
+            }
+
+            h1,h2{
+                text-align:center;
+            }
+
+            table{
+                width:100%;
+                border-collapse:collapse;
+                margin-top:20px;
+            }
+
+            td,th{
+                border:1px solid #333;
+                padding:10px;
+            }
+
+            th{
+                background:#eee;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <h1>
+            Abo Safwan Currency
+        </h1>
+
+        <h2>
+            Currency Exchange Receipt
+        </h2>
+
+        <table>
+
+            <tr>
+                <th>Tracking Number</th>
+                <td>
+                    ${escapeHtml(order.tracking_number||"-")}
+                </td>
+            </tr>
+
+            <tr>
+                <th>Customer</th>
+                <td>
+                    ${escapeHtml(order.customer||"-")}
+                </td>
+            </tr>
+
+            <tr>
+                <th>Mobile</th>
+                <td>
+                    ${escapeHtml(order.mobile||"-")}
+                </td>
+            </tr>
+
+            <tr>
+                <th>Receiver</th>
+                <td>
+                    ${escapeHtml(order.receiver||"-")}
+                </td>
+            </tr>
+
+            <tr>
+                <th>Saudi Riyal</th>
+                <td>
+                    ${num(order.amount)}
+                </td>
+            </tr>
+
+            <tr>
+                <th>Rate</th>
+                <td>
+                    ${num(order.rate)}
+                </td>
+            </tr>
+
+            <tr>
+                <th>Total PKR</th>
+                <td>
+                    ${num(total)}
+                </td>
+            </tr>
+
+            <tr>
+                <th>Received</th>
+                <td>
+                    ${num(received)}
+                </td>
+            </tr>
+
+            <tr>
+                <th>Due</th>
+                <td>
+                    ${num(due)}
+                </td>
+            </tr>
+
+            <tr>
+                <th>Status</th>
+                <td>
+                    ${order.status==="approved"
+                        ?"Approved"
+                        :"Pending"}
+                </td>
+            </tr>
+
+            <tr>
+                <th>Date</th>
+                <td>
+                    ${date(order.record_date)}
+                </td>
+            </tr>
+
+        </table>
+
+        <script>
+
+            window.onload=function(){
+
+                window.print();
+
+            };
+
+        <\/script>
+
+    </body>
+
+    </html>
+
+    `);
+
+
+    printWindow.document.close();
+
+}
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHtml(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+async function loadDashboard(){
+
+    await loadRate();
+
+    await loadOrders();
+
+}
+
+
+/* =========================
+   CHECK EXISTING SESSION
+========================= */
+
+async function checkSession(){
+
+    try{
+
+        const {
+            data
+        } =
+            await supabaseClient.auth.getSession();
+
+
+        const session =
+            data.session;
+
+
+        if(
+            session &&
+            session.user &&
+            session.user.id===ADMIN_ID
+        ){
+
+            document
+                .getElementById("loginPage")
+                .classList.add("hidden");
+
+            document
+                .getElementById("adminPage")
+                .classList.remove("hidden");
+
+            await loadDashboard();
+
+        }
+
+    }catch(error){
+
+        console.error(error);
+
+    }
+
+}
+
+
+checkSession();
+
+</script>
+
+</body>
+</html>
